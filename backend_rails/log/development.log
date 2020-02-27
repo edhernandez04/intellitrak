@@ -1,0 +1,180 @@
+  [1m[35m (0.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "IntTrak_development"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "IntTrak_test"[0m
+  [1m[35m (426.8ms)[0m  [1m[35mCREATE DATABASE "IntTrak_development" ENCODING = 'unicode'[0m
+  [1m[35m (112.1ms)[0m  [1m[35mCREATE DATABASE "IntTrak_test" ENCODING = 'unicode'[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(550849112763844440)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200227195502)
+  [1m[35m (3.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "total_sales" integer, "cars_sold" integer, "team_name" character varying, "position" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (2.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227195502"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClients (20200227195639)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "clients" ("id" bigserial primary key, "fullname" character varying, "phone_number" character varying, "email" character varying, "address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227195639"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVehicles (20200227200117)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "vehicles" ("id" bigserial primary key, "year" integer, "make" character varying, "model" character varying, "trim" character varying, "vin" character varying, "mileage" integer, "color" character varying, "purchase_date" date, "purchase_price" integer, "description" character varying, "buyer_id" integer, "sold" boolean, "sale_price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200117"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSales (20200227200251)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE TABLE "sales" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_421b5ba2e2"
+FOREIGN KEY ("user_id_id")
+  REFERENCES "user_id" ("id")
+, CONSTRAINT "fk_rails_b9ba21314f"
+FOREIGN KEY ("client_id_id")
+  REFERENCES "client_id" ("id")
+, CONSTRAINT "fk_rails_46a0e65331"
+FOREIGN KEY ("vehicle_id_id")
+  REFERENCES "vehicle_id" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(550849112763844440)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE DATABASE "IntTrak_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "IntTrak_test" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(550849112763844440)[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSales (20200227200251)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "sales" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_421b5ba2e2"
+FOREIGN KEY ("user_id_id")
+  REFERENCES "user_id" ("id")
+, CONSTRAINT "fk_rails_b9ba21314f"
+FOREIGN KEY ("client_id_id")
+  REFERENCES "client_id" ("id")
+, CONSTRAINT "fk_rails_46a0e65331"
+FOREIGN KEY ("vehicle_id_id")
+  REFERENCES "vehicle_id" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(550849112763844440)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(550849112763844440)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSales (20200227200251)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.6ms)[0m  [1m[35mCREATE TABLE "sales" ("id" bigserial primary key, "user_id" integer, "client_id" integer, "vehicle_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200251"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLeads (20200227200338)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (52.4ms)[0m  [1m[35mCREATE TABLE "leads" ("id" bigserial primary key, "client_id" integer, "user_id" integer, "note" character varying, "closed" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200338"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-02-27 20:23:30.423117"], ["updated_at", "2020-02-27 20:23:30.423117"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(550849112763844440)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (11.0ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["year", 1999], ["make", "Cadillac"], ["model", "Escalade"], ["created_at", "2020-02-27 20:45:06.675510"], ["updated_at", "2020-02-27 20:45:06.675510"]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-02-27 15:51:20 -0500
+  
+SyntaxError (/Users/andrewrichards/Dropbox/Flatiron/Intellitrak/intellitrak_project/config/routes.rb:4: syntax error, unexpected tSTRING_BEG, expecting do or '{' or '('
+get '/index', to 'vehicles#index'
+                 ^):
+  
+config/routes.rb:4: syntax error, unexpected tSTRING_BEG, expecting do or '{' or '('
+config/routes.rb:4: syntax error, unexpected tSTRING_BEG, expecting do or '{' or '('
+Started GET "/vehicles" for ::1 at 2020-02-27 16:11:48 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/vehicles"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.2) lib/puma/configuration.rb:228:in `call'
+puma (4.3.2) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.2) lib/puma/server.rb:472:in `process_client'
+puma (4.3.2) lib/puma/server.rb:328:in `block in run'
+puma (4.3.2) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/vehicles" for ::1 at 2020-02-27 16:12:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/vehicles"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.2) lib/puma/configuration.rb:228:in `call'
+puma (4.3.2) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.2) lib/puma/server.rb:472:in `process_client'
+puma (4.3.2) lib/puma/server.rb:328:in `block in run'
+puma (4.3.2) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/index" for ::1 at 2020-02-27 16:12:41 -0500
+Processing by VehiclesController#index as HTML
+  [1m[36mVehicle Load (4.3ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 48ms (Views: 34.0ms | ActiveRecord: 11.8ms | Allocations: 12030)
+
+
+Started GET "/index" for ::1 at 2020-02-27 16:12:55 -0500
+Processing by VehiclesController#index as */*
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 1016)
+
+
+Started GET "/index" for ::1 at 2020-02-27 16:13:25 -0500
+Processing by VehiclesController#index as */*
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.5ms | Allocations: 1017)
+
+
+Started GET "/index" for ::1 at 2020-02-27 16:16:31 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by VehiclesController#index as */*
+  [1m[36mVehicle Load (0.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 21ms (Views: 11.7ms | ActiveRecord: 6.7ms | Allocations: 11915)
+
+
+Started GET "/index" for ::1 at 2020-02-27 16:16:39 -0500
+Processing by VehiclesController#index as */*
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 1018)
+
+
+Started GET "/index" for ::1 at 2020-02-27 16:17:16 -0500
+Processing by VehiclesController#index as */*
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 1018)
+
+
