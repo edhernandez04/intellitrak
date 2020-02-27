@@ -4,19 +4,20 @@ document.addEventListener("DOMContentLoaded", function(){
 testButton = document.getElementById("test-button")
 vehiclesUl = document.getElementById("vehicles")
 
-testButton.addEventListener("click", function(e){
 
-    fetch("http://localhost:3000/index")
-    .then(response => response.json())
-    .then(body=> renderVehicles(body))
 
-    function renderVehicles(body){
-        console.log(body)
+collapseIcon = document.getElementById("bars-icon")
+
+activate = document.getElementById("sidebar")
+
+collapseIcon.addEventListener("click", function(e){
+    if (activate.classList.contains("active")){
+        activate.classList.remove("active")
+    } else {
+        activate.classList.add("active")
     }
+    
 })
-
-
-
 
 
 
