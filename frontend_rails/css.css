@@ -67,6 +67,40 @@ a {
     align-items: stretch;
 }
 
+.row {
+    height: 200px;
+    width: 98%;
+}
+
+#leaderBoardCard {
+    margin-right: 25px;
+    padding: 10px;
+}
+
+#leaderboard {
+    margin: 0px;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-top: 25px;
+    align-content: center;
+  }
+
+.car-card {
+    display: inline-block;
+}
+
+.card {
+    padding: 25px;
+    position: relative;
+    left: 25px;
+    top: 25px;
+    height: 175px;
+}
+
 #sidebar {
     min-width: 250px;
     max-width: 250px;
@@ -121,4 +155,14 @@ a {
 a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 250px;
+    overflow: auto;
+    }
+
+.table-wrapper-scroll-y {
+display: block;
 }
