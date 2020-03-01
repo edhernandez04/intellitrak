@@ -25,24 +25,96 @@ let carouselContainer = document.createElement('div')
         let theCarousel = document.createElement('div')
             theCarousel.className = "scrolling-wrapper"
             theCarousel.id = 'carousel'
-            // iterate through cars when data available
+            // iterate through cars when data available **********************************************
             theCarousel.innerHTML = `
-                <div class="card car-card"><h2>card</h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>
-                <div class="card car-card"><h2>card </h2></div>`
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                    </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                    </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>
+                <div class="card car-card">
+                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
+                    <p align="center"> 2019 X5 <br> 
+                    44th Day on Lot <br>
+                    Purchase Price: $55,995 <br>
+                    Mileage: 1,324
+                    </p>
+
+                </div>`
 
     let personalStats = document.createElement('div')
         personalStats.className = "col-4"
         let personalStatCard = document.createElement('div')
             personalStatCard.className = 'card'
             personalStatCard.style = 'width: 350px'
-            // when data is created insert function to iterate through here **********************
+            // when data is created insert function to interpolate through here **********************
             personalStatCard.innerHTML = `
             <h5>Ed Hernandez</h5>
             <h6> President of Sales</h6>
@@ -50,7 +122,7 @@ let carouselContainer = document.createElement('div')
             `
             let progress = document.createElement('div')
                 progress.className = 'progress'
-                    // interpolate results to adjust the bar based on performance
+                    // interpolate results to adjust the bar based on performance ***********************
                 progress.innerHTML = `
                 <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                 `

@@ -75,6 +75,7 @@ a {
 #leaderBoardCard {
     margin-right: 25px;
     padding: 10px;
+    height: 167px;
 }
 
 #leaderboard {
@@ -82,15 +83,16 @@ a {
 }
 
 .scrolling-wrapper {
+    height: 350px;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     padding-top: 25px;
-    align-content: center;
   }
 
 .car-card {
     display: inline-block;
+
 }
 
 .card {
@@ -98,16 +100,16 @@ a {
     position: relative;
     left: 25px;
     top: 25px;
-    height: 175px;
+    height: relative;
+}
+
+#sidebar.active {
+    margin-left: -250px;
 }
 
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-}
-
-#sidebar.active {
-    margin-left: -250px;
 }
 
 
