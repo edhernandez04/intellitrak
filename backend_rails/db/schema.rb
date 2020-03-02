@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_200338) do
     t.integer "buyer_id"
     t.boolean "sold"
     t.integer "sale_price"
+    t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

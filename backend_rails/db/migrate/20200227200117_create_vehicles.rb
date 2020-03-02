@@ -14,6 +14,7 @@ class CreateVehicles < ActiveRecord::Migration[6.0]
       t.integer :buyer_id
       t.boolean :sold
       t.integer :sale_price
+      t.string :img_url
 
       t.timestamps
     end

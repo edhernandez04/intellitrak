@@ -1959,3 +1959,300 @@ Processing by VehiclesController#index as HTML
 Completed 200 OK in 14ms (Views: 3.7ms | ActiveRecord: 4.3ms | Allocations: 2346)
 
 
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (95.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "IntTrak_development"[0m
+  [1m[35m (55.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "IntTrak_test"[0m
+  [1m[35m (436.9ms)[0m  [1m[35mCREATE DATABASE "IntTrak_development" ENCODING = 'unicode'[0m
+  [1m[35m (124.2ms)[0m  [1m[35mCREATE DATABASE "IntTrak_test" ENCODING = 'unicode'[0m
+  [1m[35m (72.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(550849112763844440)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200227195502)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "total_sales" integer, "cars_sold" integer, "team_name" character varying, "position" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (4.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227195502"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateClients (20200227195639)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "clients" ("id" bigserial primary key, "fullname" character varying, "phone_number" character varying, "email" character varying, "address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227195639"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVehicles (20200227200117)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "vehicles" ("id" bigserial primary key, "year" integer, "make" character varying, "model" character varying, "trim" character varying, "vin" character varying, "mileage" integer, "color" character varying, "purchase_date" date, "purchase_price" integer, "description" character varying, "buyer_id" integer, "sold" boolean, "sale_price" integer, "img_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200117"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSales (20200227200251)
+  [1m[35m (3.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "sales" ("id" bigserial primary key, "user_id" integer, "client_id" integer, "vehicle_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200251"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateLeads (20200227200338)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "leads" ("id" bigserial primary key, "client_id" integer, "user_id" integer, "note" character varying, "closed" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200227200338"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-02 16:00:45.397044"], ["updated_at", "2020-03-02 16:00:45.397044"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(550849112763844440)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (1.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mVehicle Load (1.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Rebecca Weissnat"], ["total_sales", 34625], ["cars_sold", 122], ["team_name", "lions"], ["position", "Specialist"], ["created_at", "2020-03-02 16:33:12.539622"], ["updated_at", "2020-03-02 16:33:12.539622"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Marquita Kautzer Sr."], ["total_sales", 44366], ["cars_sold", 135], ["team_name", "dogs"], ["position", "Lieutenant Colonel"], ["created_at", "2020-03-02 16:33:12.550436"], ["updated_at", "2020-03-02 16:33:12.550436"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Benito Powlowski"], ["total_sales", 134310], ["cars_sold", 62], ["team_name", "warlocks"], ["position", "Colonel"], ["created_at", "2020-03-02 16:33:12.554934"], ["updated_at", "2020-03-02 16:33:12.554934"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Julius Hills"], ["total_sales", 25832], ["cars_sold", 9], ["team_name", "exorcists"], ["position", "Colonel"], ["created_at", "2020-03-02 16:33:12.559421"], ["updated_at", "2020-03-02 16:33:12.559421"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Rodrick Wilderman"], ["total_sales", 197759], ["cars_sold", 139], ["team_name", "warlocks"], ["position", "Colonel"], ["created_at", "2020-03-02 16:33:12.563639"], ["updated_at", "2020-03-02 16:33:12.563639"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Anthony Ward"], ["total_sales", 201707], ["cars_sold", 76], ["team_name", "foxes"], ["position", "Sergeant First Class"], ["created_at", "2020-03-02 16:33:12.568828"], ["updated_at", "2020-03-02 16:33:12.568828"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Noble Wisoky"], ["total_sales", 59002], ["cars_sold", 106], ["team_name", "sorcerors"], ["position", "First Sergeant"], ["created_at", "2020-03-02 16:33:12.575828"], ["updated_at", "2020-03-02 16:33:12.575828"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Jess Huel"], ["total_sales", 230355], ["cars_sold", 85], ["team_name", "rabbits"], ["position", "Private"], ["created_at", "2020-03-02 16:33:12.581630"], ["updated_at", "2020-03-02 16:33:12.581630"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Ruben Mann"], ["total_sales", 47179], ["cars_sold", 117], ["team_name", "sons"], ["position", "Private"], ["created_at", "2020-03-02 16:33:12.586908"], ["updated_at", "2020-03-02 16:33:12.586908"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Danyel Roob DDS"], ["total_sales", 235067], ["cars_sold", 92], ["team_name", "monkeys"], ["position", "Corporal"], ["created_at", "2020-03-02 16:33:12.592574"], ["updated_at", "2020-03-02 16:33:12.592574"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Julio Thiel"], ["total_sales", 69242], ["cars_sold", 29], ["team_name", "sorcerors"], ["position", "Colonel"], ["created_at", "2020-03-02 16:33:12.597639"], ["updated_at", "2020-03-02 16:33:12.597639"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Shu D'Amore III"], ["total_sales", 82807], ["cars_sold", 92], ["team_name", "tigers"], ["position", "Captain"], ["created_at", "2020-03-02 16:33:12.602719"], ["updated_at", "2020-03-02 16:33:12.602719"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Son O'Conner DDS"], ["total_sales", 189759], ["cars_sold", 120], ["team_name", "tigers"], ["position", "Command Sergeant Major"], ["created_at", "2020-03-02 16:33:12.607579"], ["updated_at", "2020-03-02 16:33:12.607579"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Oscar Feest Sr."], ["total_sales", 69150], ["cars_sold", 23], ["team_name", "giants"], ["position", "Sergeant Major of the Army"], ["created_at", "2020-03-02 16:33:12.612534"], ["updated_at", "2020-03-02 16:33:12.612534"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Mr. Christin D'Amore"], ["total_sales", 241001], ["cars_sold", 71], ["team_name", "spirits"], ["position", "General of the Armies"], ["created_at", "2020-03-02 16:33:12.617469"], ["updated_at", "2020-03-02 16:33:12.617469"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Ms. Taryn Lind"], ["total_sales", 219041], ["cars_sold", 35], ["team_name", "sons"], ["position", "Master Sergeant"], ["created_at", "2020-03-02 16:33:12.621724"], ["updated_at", "2020-03-02 16:33:12.621724"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Many Schinner"], ["total_sales", 115700], ["cars_sold", 11], ["team_name", "ants"], ["position", "Colonel"], ["created_at", "2020-03-02 16:33:12.625936"], ["updated_at", "2020-03-02 16:33:12.625936"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Greg Johnston"], ["total_sales", 208090], ["cars_sold", 57], ["team_name", "banshees"], ["position", "Private"], ["created_at", "2020-03-02 16:33:12.630126"], ["updated_at", "2020-03-02 16:33:12.630126"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Dr. Meri Spinka"], ["total_sales", 46616], ["cars_sold", 95], ["team_name", "lions"], ["position", "Major"], ["created_at", "2020-03-02 16:33:12.635259"], ["updated_at", "2020-03-02 16:33:12.635259"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Lettie Sporer"], ["total_sales", 51856], ["cars_sold", 91], ["team_name", "people"], ["position", "Staff Sergeant"], ["created_at", "2020-03-02 16:33:12.642207"], ["updated_at", "2020-03-02 16:33:12.642207"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Ms. Ernie Volkman"], ["total_sales", 162097], ["cars_sold", 90], ["team_name", "oxen"], ["position", "First Sergeant"], ["created_at", "2020-03-02 16:33:12.648115"], ["updated_at", "2020-03-02 16:33:12.648115"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Ruthie Murazik Sr."], ["total_sales", 189642], ["cars_sold", 128], ["team_name", "kangaroos"], ["position", "General of the Army"], ["created_at", "2020-03-02 16:33:12.656836"], ["updated_at", "2020-03-02 16:33:12.656836"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Erlene Gottlieb"], ["total_sales", 154431], ["cars_sold", 3], ["team_name", "vixens"], ["position", "Major General"], ["created_at", "2020-03-02 16:33:12.662222"], ["updated_at", "2020-03-02 16:33:12.662222"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Maurice Hoppe"], ["total_sales", 22711], ["cars_sold", 57], ["team_name", "chickens"], ["position", "Lieutenant General"], ["created_at", "2020-03-02 16:33:12.667119"], ["updated_at", "2020-03-02 16:33:12.667119"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "total_sales", "cars_sold", "team_name", "position", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Joseph McClure"], ["total_sales", 36541], ["cars_sold", 8], ["team_name", "banshees"], ["position", "Sergeant First Class"], ["created_at", "2020-03-02 16:33:12.671782"], ["updated_at", "2020-03-02 16:33:12.671782"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.9ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Mason Jarr"], ["phone_number", "701-418-0073"], ["email", "renata@gmail.com"], ["address", "11378 Lenny Valleys"], ["created_at", "2020-03-02 16:33:12.685794"], ["updated_at", "2020-03-02 16:33:12.685794"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Tom Katz"], ["phone_number", "1-500-745-0318"], ["email", "cecil@hotmail.com"], ["address", "781 Monserrate Club"], ["created_at", "2020-03-02 16:33:12.692136"], ["updated_at", "2020-03-02 16:33:12.692136"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Didi Reelydoit"], ["phone_number", "102-549-6907"], ["email", "lorilee.stamm@gmail.com"], ["address", "74837 Isiah Place"], ["created_at", "2020-03-02 16:33:12.698639"], ["updated_at", "2020-03-02 16:33:12.698639"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Armand Hammer"], ["phone_number", "144.475.1090"], ["email", "tyrone@gmail.com"], ["address", "1710 Olson Ville"], ["created_at", "2020-03-02 16:33:12.706251"], ["updated_at", "2020-03-02 16:33:12.706251"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Rowan Boatman"], ["phone_number", "(521) 308-8322"], ["email", "roscoe@hotmail.com"], ["address", "738 Jewell Manor"], ["created_at", "2020-03-02 16:33:12.712009"], ["updated_at", "2020-03-02 16:33:12.712009"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Herbie Voor"], ["phone_number", "1-246-705-3685"], ["email", "elma.kunze@yahoo.com"], ["address", "947 Labadie Mission"], ["created_at", "2020-03-02 16:33:12.717087"], ["updated_at", "2020-03-02 16:33:12.717087"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Cy Kosis"], ["phone_number", "(542) 287-8030"], ["email", "rosalie@yahoo.com"], ["address", "65264 Letha Fields"], ["created_at", "2020-03-02 16:33:12.722700"], ["updated_at", "2020-03-02 16:33:12.722700"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Rip Tile"], ["phone_number", "410.811.7369"], ["email", "adan@gmail.com"], ["address", "9546 Nichelle River"], ["created_at", "2020-03-02 16:33:12.728292"], ["updated_at", "2020-03-02 16:33:12.728292"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Anita Job"], ["phone_number", "(329) 115-9261"], ["email", "jamison@hotmail.com"], ["address", "516 Kuhn Tunnel"], ["created_at", "2020-03-02 16:33:12.732908"], ["updated_at", "2020-03-02 16:33:12.732908"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Evans Gayte"], ["phone_number", "239.524.2755"], ["email", "alvaro@yahoo.com"], ["address", "10631 Feeney Station"], ["created_at", "2020-03-02 16:33:12.738746"], ["updated_at", "2020-03-02 16:33:12.738746"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Hare Brain"], ["phone_number", "1-272-247-8282"], ["email", "valencia@gmail.com"], ["address", "21149 Shanna Vista"], ["created_at", "2020-03-02 16:33:12.746393"], ["updated_at", "2020-03-02 16:33:12.746393"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Brooke Trout"], ["phone_number", "(198) 901-2451"], ["email", "emerson_bosco@hotmail.com"], ["address", "620 Hammes Loop"], ["created_at", "2020-03-02 16:33:12.752055"], ["updated_at", "2020-03-02 16:33:12.752055"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Bart Ender"], ["phone_number", "(542) 971-8618"], ["email", "salena_conn@hotmail.com"], ["address", "1836 Irmgard Plains"], ["created_at", "2020-03-02 16:33:12.756914"], ["updated_at", "2020-03-02 16:33:12.756914"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Lance Lyde"], ["phone_number", "397.016.8229"], ["email", "tory@gmail.com"], ["address", "6944 Doretha Hills"], ["created_at", "2020-03-02 16:33:12.762030"], ["updated_at", "2020-03-02 16:33:12.762030"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Annie Moore"], ["phone_number", "530.623.5952"], ["email", "nakesha.prosacco@gmail.com"], ["address", "10194 Roberts Dam"], ["created_at", "2020-03-02 16:33:12.767930"], ["updated_at", "2020-03-02 16:33:12.767930"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Winnie Bago"], ["phone_number", "159.000.0099"], ["email", "idalia@yahoo.com"], ["address", "3747 Mauro Circles"], ["created_at", "2020-03-02 16:33:12.775712"], ["updated_at", "2020-03-02 16:33:12.775712"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Jack Dupp"], ["phone_number", "794-534-5065"], ["email", "fletcher.prosacco@yahoo.com"], ["address", "872 Kimi Squares"], ["created_at", "2020-03-02 16:33:12.782276"], ["updated_at", "2020-03-02 16:33:12.782276"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.9ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Quimby Ingmeen"], ["phone_number", "(912) 247-5567"], ["email", "krysta@gmail.com"], ["address", "2828 Adams Via"], ["created_at", "2020-03-02 16:33:12.790320"], ["updated_at", "2020-03-02 16:33:12.790320"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Bea Lowe"], ["phone_number", "(375) 998-1451"], ["email", "avery.keeling@yahoo.com"], ["address", "8497 Quitzon Mountains"], ["created_at", "2020-03-02 16:33:12.798720"], ["updated_at", "2020-03-02 16:33:12.798720"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Ray Gunn"], ["phone_number", "643-920-0185"], ["email", "maisie@gmail.com"], ["address", "93466 Gilberto Glens"], ["created_at", "2020-03-02 16:33:12.806183"], ["updated_at", "2020-03-02 16:33:12.806183"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Dinah Might"], ["phone_number", "522.925.6443"], ["email", "josue_doyle@hotmail.com"], ["address", "6412 Ortiz Squares"], ["created_at", "2020-03-02 16:33:12.811706"], ["updated_at", "2020-03-02 16:33:12.811706"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Olive Yew"], ["phone_number", "(732) 896-3596"], ["email", "frederica@gmail.com"], ["address", "515 Strosin Field"], ["created_at", "2020-03-02 16:33:12.817113"], ["updated_at", "2020-03-02 16:33:12.817113"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Telly Vision"], ["phone_number", "(348) 225-3932"], ["email", "donna.harvey@gmail.com"], ["address", "383 Stamm Spring"], ["created_at", "2020-03-02 16:33:12.823033"], ["updated_at", "2020-03-02 16:33:12.823033"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Royal Payne"], ["phone_number", "311-095-5810"], ["email", "hipolito@gmail.com"], ["address", "145 Grisel Spurs"], ["created_at", "2020-03-02 16:33:12.847506"], ["updated_at", "2020-03-02 16:33:12.847506"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Doug Witherspoon"], ["phone_number", "(166) 848-8477"], ["email", "del.oreilly@gmail.com"], ["address", "737 Renner Fork"], ["created_at", "2020-03-02 16:33:12.852984"], ["updated_at", "2020-03-02 16:33:12.852984"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Cole Kutz"], ["phone_number", "1-807-115-9487"], ["email", "sylvie@hotmail.com"], ["address", "3024 Weissnat Meadow"], ["created_at", "2020-03-02 16:33:12.857571"], ["updated_at", "2020-03-02 16:33:12.857571"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Skip Dover"], ["phone_number", "915-438-8355"], ["email", "millard.wehner@gmail.com"], ["address", "8400 Hintz Place"], ["created_at", "2020-03-02 16:33:12.862259"], ["updated_at", "2020-03-02 16:33:12.862259"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Adam Sapple"], ["phone_number", "414-709-0212"], ["email", "charles.fritsch@hotmail.com"], ["address", "4826 Graig Well"], ["created_at", "2020-03-02 16:33:12.867514"], ["updated_at", "2020-03-02 16:33:12.867514"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Eileen Dover"], ["phone_number", "1-602-962-2848"], ["email", "mitchell@gmail.com"], ["address", "864 Carroll Island"], ["created_at", "2020-03-02 16:33:12.872684"], ["updated_at", "2020-03-02 16:33:12.872684"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Brandon Irons"], ["phone_number", "1-489-886-4895"], ["email", "donnie@gmail.com"], ["address", "17439 Conn Coves"], ["created_at", "2020-03-02 16:33:12.877433"], ["updated_at", "2020-03-02 16:33:12.877433"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Tad Moore"], ["phone_number", "851-494-0224"], ["email", "shirely@gmail.com"], ["address", "625 Elly Ridges"], ["created_at", "2020-03-02 16:33:12.883025"], ["updated_at", "2020-03-02 16:33:12.883025"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Laura Norder"], ["phone_number", "(640) 370-2140"], ["email", "demetra@hotmail.com"], ["address", "274 Jaskolski Centers"], ["created_at", "2020-03-02 16:33:12.890873"], ["updated_at", "2020-03-02 16:33:12.890873"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.5ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Hein Noon"], ["phone_number", "(358) 882-7586"], ["email", "marketta@yahoo.com"], ["address", "5680 Altenwerth Forge"], ["created_at", "2020-03-02 16:33:12.896749"], ["updated_at", "2020-03-02 16:33:12.896749"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.4ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Thor Luther"], ["phone_number", "165.430.1829"], ["email", "cliff@hotmail.com"], ["address", "62821 Dino Port"], ["created_at", "2020-03-02 16:33:12.901710"], ["updated_at", "2020-03-02 16:33:12.901710"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Create (0.6ms)[0m  [1m[32mINSERT INTO "clients" ("fullname", "phone_number", "email", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["fullname", "Ty Malone"], ["phone_number", "1-754-573-6912"], ["email", "judson@yahoo.com"], ["address", "59796 Loyd Groves"], ["created_at", "2020-03-02 16:33:12.907427"], ["updated_at", "2020-03-02 16:33:12.907427"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (3.0ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2016], ["make", "Cadillac"], ["model", "Escalade"], ["mileage", 74997], ["purchase_date", "2019-12-07"], ["purchase_price", 37035], ["img_url", "https://cars.usnews.com/static/images/Auto/izmo/i2314336/2016_cadillac_escalade_angularfront.jpg"], ["created_at", "2020-03-02 16:33:12.936179"], ["updated_at", "2020-03-02 16:33:12.936179"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.7ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2020], ["make", "Chevrolet"], ["model", "Camaro"], ["mileage", 80337], ["purchase_date", "2020-01-15"], ["purchase_price", 11479], ["img_url", "https://content.autotrader.com/content/dam/autotrader/articles/Cars/Chevrolet/Camaro/2020/2020ChevroletCamaro/2020-Chevrolet-Camaro-(1).jpg"], ["created_at", "2020-03-02 16:33:12.946856"], ["updated_at", "2020-03-02 16:33:12.946856"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.5ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2018], ["make", "Ford"], ["model", "F-150"], ["mileage", 87296], ["purchase_date", "2020-02-27"], ["purchase_price", 30696], ["img_url", "https://www.cstatic-images.com/car-pictures/xl/usc90fot11af021001.png"], ["created_at", "2020-03-02 16:33:12.953907"], ["updated_at", "2020-03-02 16:33:12.953907"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.5ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2017], ["make", "BMW"], ["model", "330i"], ["mileage", 48740], ["purchase_date", "2020-02-27"], ["purchase_price", 67604], ["img_url", "https://m.media-amazon.com/images/I/71mWGhau91L._UY560_.jpg"], ["created_at", "2020-03-02 16:33:12.959179"], ["updated_at", "2020-03-02 16:33:12.959179"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "BMW"], ["model", "428i"], ["mileage", 84628], ["purchase_date", "2020-01-31"], ["purchase_price", 58029], ["img_url", "https://images.hgmsites.net/lrg/2019-bmw-4-series-430i-gran-coupe-angular-front-exterior-view_100657902_l.jpg"], ["created_at", "2020-03-02 16:33:12.963851"], ["updated_at", "2020-03-02 16:33:12.963851"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2017], ["make", "Lexus"], ["model", "RX 350"], ["mileage", 45204], ["purchase_date", "2020-01-26"], ["purchase_price", 86277], ["img_url", "https://m.media-amazon.com/images/I/71NmcG3M45L._UY560_.jpg"], ["created_at", "2020-03-02 16:33:12.968017"], ["updated_at", "2020-03-02 16:33:12.968017"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2018], ["make", "Chevrolet"], ["model", "Corvette"], ["mileage", 25600], ["purchase_date", "2020-02-29"], ["purchase_price", 35011], ["img_url", "https://cars.usnews.com/static/images/Auto/izmo/i31351529/2018_chevrolet_corvette_angularfront.jpg"], ["created_at", "2020-03-02 16:33:12.972181"], ["updated_at", "2020-03-02 16:33:12.972181"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "Cadillac"], ["model", "CTS-V"], ["mileage", 24289], ["purchase_date", "2019-12-31"], ["purchase_price", 44186], ["img_url", "https://autopublishers.com/WebSites/1381/Images/Blogs/3734/2017_cadillac_cts-v_LIFE1_ot_1202163_1600.jpg"], ["created_at", "2020-03-02 16:33:12.976281"], ["updated_at", "2020-03-02 16:33:12.976281"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2020], ["make", "BMW"], ["model", "X4"], ["mileage", 47048], ["purchase_date", "2019-12-03"], ["purchase_price", 62788], ["img_url", "https://cdn.motor1.com/images/mgl/X8oKl/s1/2019-bmw-x4-m40i.jpg"], ["created_at", "2020-03-02 16:33:12.980230"], ["updated_at", "2020-03-02 16:33:12.980230"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2016], ["make", "BMW"], ["model", "X5"], ["mileage", 4652], ["purchase_date", "2020-03-01"], ["purchase_price", 69700], ["img_url", "https://www.cstatic-images.com/car-pictures/xl/USC40BMS191A021001.png"], ["created_at", "2020-03-02 16:33:12.984173"], ["updated_at", "2020-03-02 16:33:12.984173"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2018], ["make", "BMW"], ["model", "X6"], ["mileage", 12013], ["purchase_date", "2020-02-22"], ["purchase_price", 91984], ["img_url", "https://images.hgmsites.net/lrg/2018-bmw-x6-m-sports-activity-coupe-angular-front-exterior-view_100637402_l.jpg"], ["created_at", "2020-03-02 16:33:12.988357"], ["updated_at", "2020-03-02 16:33:12.988357"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.5ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "Cadillac"], ["model", "XTS"], ["mileage", 47856], ["purchase_date", "2019-12-28"], ["purchase_price", 84510], ["img_url", "https://inventory-dmg.assets-cdk.com/6/1/2/21907801216.jpg"], ["created_at", "2020-03-02 16:33:12.995256"], ["updated_at", "2020-03-02 16:33:12.995256"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2017], ["make", "Lexus"], ["model", "IS 300"], ["mileage", 1087], ["purchase_date", "2019-12-12"], ["purchase_price", 17086], ["img_url", "https://www.cstatic-images.com/car-pictures/xl/cac70lec081a021001.png"], ["created_at", "2020-03-02 16:33:13.000273"], ["updated_at", "2020-03-02 16:33:13.000273"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2016], ["make", "Chevrolet"], ["model", "Camaro"], ["mileage", 4456], ["purchase_date", "2019-12-11"], ["purchase_price", 67462], ["img_url", "https://www.autoguide.com/blog/wp-content/gallery/2016-chevrolet-camaro-1ss-review-6-3-2016/2016-Chevrolet-Camaro-1SS-Front-01.jpg"], ["created_at", "2020-03-02 16:33:13.004235"], ["updated_at", "2020-03-02 16:33:13.004235"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "BMW"], ["model", "M4"], ["mileage", 27595], ["purchase_date", "2020-02-07"], ["purchase_price", 74875], ["img_url", "https://media.ed.edmunds-media.com/bmw/m4-cs/2019/oem/2019_bmw_m4-cs_coupe_base_fq_oem_1_500.jpg"], ["created_at", "2020-03-02 16:33:13.008284"], ["updated_at", "2020-03-02 16:33:13.008284"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2020], ["make", "BMW"], ["model", "M6"], ["mileage", 19224], ["purchase_date", "2020-02-20"], ["purchase_price", 19720], ["img_url", "https://postmediadriving.files.wordpress.com/2019/04/chrome-image-399444.png?w=800&h=520&crop=1"], ["created_at", "2020-03-02 16:33:13.012268"], ["updated_at", "2020-03-02 16:33:13.012268"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2017], ["make", "Ford"], ["model", "F-250"], ["mileage", 88755], ["purchase_date", "2019-12-17"], ["purchase_price", 65881], ["img_url", "https://fleetimages.bobitstudios.com/upload/content/_migrated/m-17fordf250xlt-1017-hr-2.jpg"], ["created_at", "2020-03-02 16:33:13.016256"], ["updated_at", "2020-03-02 16:33:13.016256"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.7ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2018], ["make", "Honda"], ["model", "Civic"], ["mileage", 58053], ["purchase_date", "2019-12-29"], ["purchase_price", 99455], ["img_url", "https://www.cstatic-images.com/car-pictures/xl/USC80HOC024D021001.png"], ["created_at", "2020-03-02 16:33:13.021072"], ["updated_at", "2020-03-02 16:33:13.021072"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.5ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "Honda"], ["model", "Civic"], ["mileage", 7701], ["purchase_date", "2019-12-16"], ["purchase_price", 50446], ["img_url", "https://cnet2.cbsistatic.com/img/VxlLREVubewUsgHPV_A7GUn8ILM=/1240x775/2019/05/20/95e44f16-4eda-427d-aae4-1df5309547f6/2019-honda-civic-touring-sedan-1.jpg"], ["created_at", "2020-03-02 16:33:13.028257"], ["updated_at", "2020-03-02 16:33:13.028257"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.5ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "Cadillac"], ["model", "Escalade"], ["mileage", 78622], ["purchase_date", "2019-12-03"], ["purchase_price", 42056], ["img_url", "https://cars.usnews.com/static/images/Auto/izmo/i159423463/2020_cadillac_escalade_esv_angularfront.jpg"], ["created_at", "2020-03-02 16:33:13.034645"], ["updated_at", "2020-03-02 16:33:13.034645"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVehicle Create (0.4ms)[0m  [1m[32mINSERT INTO "vehicles" ("year", "make", "model", "mileage", "purchase_date", "purchase_price", "img_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["year", 2019], ["make", "BMW"], ["model", "760i"], ["mileage", 9213], ["purchase_date", "2020-02-01"], ["purchase_price", 71978], ["img_url", "https://s1.cdn.autoevolution.com/images/news/2020-bmw-7-series-leaked-again-this-time-its-the-760li-xdrive-131658_1.jpg"], ["created_at", "2020-03-02 16:33:13.039728"], ["updated_at", "2020-03-02 16:33:13.039728"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mClient Load (1.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients" ORDER BY "clients"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Load (1.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 2]]
