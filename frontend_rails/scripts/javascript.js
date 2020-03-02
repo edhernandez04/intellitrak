@@ -14,6 +14,7 @@ collapseIcon.addEventListener("click", function(e){
 })
 
 contentContainer.className = 'container'
+contentContainer.id = 'main-container'
 
 let statContainer = document.createElement('div')
     statContainer.className = 'row'
@@ -22,99 +23,17 @@ let statContainer = document.createElement('div')
 let carouselContainer = document.createElement('div')
     carouselContainer.className = 'row'
     carouselContainer.id = "carousel-container"
-        let theCarousel = document.createElement('div')
-            theCarousel.className = "scrolling-wrapper"
-            theCarousel.id = 'carousel'
-            // iterate through cars when data available **********************************************
-            theCarousel.innerHTML = `
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
 
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                    </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                    </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>
-                <div class="card car-card">
-                    <img src="https://cars.usnews.com/static/images/Auto/izmo/i2314198/2016_bmw_x5_angularfront.jpg" height="100" width="135"></img>
-                    <p align="center"> 2019 X5 <br> 
-                    44th Day on Lot <br>
-                    Purchase Price: $55,995 <br>
-                    Mileage: 1,324
-                    </p>
-
-                </div>`
+let leadContainer = document.createElement('div')
+    leadContainer.className = 'row'
+    leadContainer.id = 'lead-container'
 
     let personalStats = document.createElement('div')
         personalStats.className = "col-4"
         let personalStatCard = document.createElement('div')
             personalStatCard.className = 'card'
             personalStatCard.style = 'width: 350px'
-            // when data is created insert function to interpolate through here **********************
+            // based on logged in User - when data is created insert function to interpolate through here **********************
             personalStatCard.innerHTML = `
             <h5>Ed Hernandez</h5>
             <h6> President of Sales</h6>
@@ -137,77 +56,83 @@ let carouselContainer = document.createElement('div')
                 leaderBoard.id = 'leaderboard'
                 leaderBoard.className = "table-wrapper-scroll-y my-custom-scrollbar"
                 leaderBoard.cellSpacing = '0'
-                // WILL ITERATE WHEN DATA IS AVAILABLE!!! ******************************************
-                    leaderBoard.innerHTML = `
-                    <thead>
-                    <tr>
-                        <th style="width: 20%"> <button style="width: 100%;"> Daily </button> </th>
-                        <th style="width: 20%"> <button style="width: 100%;"> Weekly </button> </th>
-                        <th style="width: 20%"> <button style="width: 100%;">  Monthly </button> </th>
-                        <th style="width: 20%"> <button style="width: 100%;"> Yearly </button> </th>
-                        <th style="width: 20%"> <button style="width: 100%;"> Total </button> </th>
-                    </tr>
-                    </thead
-                    <tr>
-                        <td align="center"> Ed Hernandez </td>
-                        <td align="center"> President of Sales </td>
-                        <td align="center"> Monstars </td>
-                        <td align="center"> $435365436 </td>
-                        <td align="center"> 455 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Cheif Andrews </td>
-                        <td align="center"> Cheif of Operations </td>
-                        <td align="center"> Outlaws </td>
-                        <td align="center"> $3985607 </td>
-                        <td align="center"> 277 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Mles Higby </td>
-                        <td align="center"> Senior Account Executive </td>
-                        <td align="center"> Giants </td>
-                        <td align="center"> $2384629 </td>
-                        <td align="center"> 345 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Nathaniel </td>
-                        <td align="center"> Account Executive </td>
-                        <td align="center"> Giants </td>
-                        <td align="center"> $34541 </td>
-                        <td align="center"> 232 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Anthony </td>
-                        <td align="center"> Sales Manager </td>
-                        <td align="center"> Brooklyn Lakers </td>
-                        <td align="center"> $234234345 </td>
-                        <td align="center"> 2324 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Natalia Wit </td>
-                        <td align="center"> Account Executive </td>
-                        <td align="center"> Brooklyn Lakers </td>
-                        <td align="center"> $2342235 </td>
-                        <td align="center"> 321 </td>
-                    </tr>
-                    <tr>
-                        <td align="center"> Jerry Jones </td>
-                        <td align="center"> Owner </td>
-                        <td align="center"> Cowboys </td>
-                        <td align="center"> $3545643 </td>
-                        <td align="center"> 3 </td>
-                    </tr>
-                    `
+                leaderBoard.innerHTML = `
+                <thead>
+                <tr>
+                    <th style="width: 20%"> <button style="width: 100%;"> Daily </button> </th>
+                    <th style="width: 20%"> <button style="width: 100%;"> Weekly </button> </th>
+                    <th style="width: 20%"> <button style="width: 100%;">  Monthly </button> </th>
+                    <th style="width: 20%"> <button style="width: 100%;"> Yearly </button> </th>
+                    <th style="width: 20%"> <button style="width: 100%;"> Total </button> </th>
+                </tr>
+                </thead>`
 
+                function displayUsers(users){
+                    users.forEach(user => leaderBoard.innerHTML += 
+                        `<tr>
+                        <td align="center"> ${user.name} </td>
+                        <td align="center"> ${user.position} </td>
+                        <td align="center"> ${user.cars_sold} </td>
+                        <td align="center"> $${user.total_sales} </td>
+                        <td align="center"> ${user.team_name} </td>
+                        </tr>` )
+                    }
+                    
+    let theCarousel = document.createElement('div')
+        theCarousel.className = "scrolling-wrapper"
+        theCarousel.id = 'carousel'
+        function displayvehicles(vehicles){
+            vehicles.forEach(car => theCarousel.innerHTML +=
+               `<div class="card car-card">
+                <img src="${car.img_url}" height="120px" width="170px"></img>
+                <p align="center"> <br>  ${car.year} ${car.make} ${car.model} <br> 
+                Delivered: ${car.purchase_date} <br>
+                Purchase Price: $${car.purchase_price} <br>
+                Mileage: ${car.mileage}
+                </p>
+                </div>`
+                )
+        }
+        
+        let leadTable = document.createElement('table')
+            leadTable.className = "table table-striped"
+            leadTable.id = 'lead-table'
+            leadTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                    </tr>
+                </thead>`
+            function displayClients(clients){
+                clients.forEach(client => leadTable.innerHTML +=
+                    `<tr>
+                        <td>${client.fullname}</td>
+                        <td>${client.phone_number}</td>
+                        <td>${client.email}</td>
+                        <td>${client.address}</td>
+                    </tr>`)
+            }
+            
 content.append(contentContainer)
-contentContainer.append(statContainer, carouselContainer)
+contentContainer.append(statContainer, carouselContainer,leadContainer)
 statContainer.append(personalStats,leaderBoardContainer)
 carouselContainer.append(theCarousel)
 leaderBoardContainer.append(leaderStatCard)
 leaderStatCard.append(leaderBoard)
 personalStats.append(personalStatCard)
 personalStatCard.append(progress)
+leadContainer.append(leadTable)
 
 document.addEventListener("DOMContentLoaded", function(){
+    fetch('http://localhost:3000/users')
+        .then(resp => resp.json()).then(users => displayUsers(users))
 
+    fetch('http://localhost:3000/clients')
+        .then(resp => resp.json()).then(clients => displayClients(clients))
+
+    fetch('http://localhost:3000/vehicles')
+        .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
 })
