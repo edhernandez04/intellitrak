@@ -10,4 +10,16 @@ class VehiclesController < ApplicationController
         render json: vehicle
     end
 
+    def create
+        newVehicle = Vehicle.create(vehicleParams)
+        
+    end
+
+    private
+
+    def vehicleParams
+        params.require(:vehicle).permit(:year, :make, :model, :trim, :color, :vin, :mileage, :purchase_date, 
+        :purchase_price, :description, :image_url)
+    end
+
 end
