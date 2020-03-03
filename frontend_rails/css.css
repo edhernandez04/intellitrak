@@ -179,3 +179,17 @@ a[aria-expanded="true"] {
 .table-wrapper-scroll-y {
 display: block;
 }
+
+.view-vehicle-info-icon{
+   position: absolute; 
+   right: 30px; 
+   bottom: 10px;
+}
+
+.view-vehicle-info-icon:hover {
+    cursor: pointer;
+}
+
+.vehicle-show-image{
+    width : 400px;
+}

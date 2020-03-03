@@ -90,6 +90,7 @@ let leadContainer = document.createElement('div')
                 Purchase Price: $${car.purchase_price} <br>
                 Mileage: ${car.mileage}
                 </p>
+                <i class="fa fa-info-circle fa-1x view-vehicle-info-icon"  data-vehicle-id = "${car.id}"></i>
                 </div>`
                 )
         }
@@ -136,3 +137,78 @@ document.addEventListener("DOMContentLoaded", function(){
     fetch('http://localhost:3000/vehicles')
         .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
 })
+
+
+
+//going to need code for an add vehicle form
+//going to need a show page for our vehicles
+
+//vehicle show page
+
+
+theCarousel.addEventListener("click", vehicleViewPage)
+
+function vehicleViewPage(e){
+    if (e.target.classList.contains("view-vehicle-info-icon")){
+        console.log("worked")
+        statContainer.hidden = true
+        leadContainer.hidden = true
+
+        renderShowPage(e.target.dataset.vehicleId)
+
+        //hidden show page = false
+    }
+}
+
+
+function renderShowPage(vehicleId){
+
+    if (document.getElementById("vehicle-show-div")){
+        document.getElementById("vehicle-show-div").remove()
+    }
+    //check if show page is already there and clear it 
+
+    let bootstrapRow = document.createElement("div")
+    bootstrapRow.className = "row"
+    bootstrapRow.innerHTML = `<div class="col-md-4></div`
+
+    let vehicleShowDiv = document.createElement("div")
+    vehicleShowDiv.className = "vehicle-show"
+    vehicleShowDiv.id = "vehicle-show-div"
+
+    let vehicleImage = document.createElement("img")
+    vehicleImage.className = "vehicle-show-image"
+    let vehicleInfo = document.createElement("div")
+    
+
+    fetch(`http://localhost:3000/vehicles/${vehicleId}`)
+        .then(response => response.json())
+        .then(body => {
+            vehicleImage.src = `${body.img_url}`;
+            vehicleInfo.innerHTML = `<h2>${body.year} ${body.make} ${body.model}</h2>`
+        })
+
+    
+    vehicleShowDiv.append(vehicleImage)
+    vehicleShowDiv.append(vehicleInfo)
+    contentContainer.append(vehicleShowDiv)
+        // append to main div
+}
+
+
+let dashboardMenuItem = document.getElementById("dashboard-menu-item")
+
+dashboardMenuItem.addEventListener("click", refreshDashboard)
+
+function refreshDashboard(){
+
+    //check for any other elements we want to remove or hide here
+    if (document.getElementById("vehicle-show-div")) {
+        document.getElementById("vehicle-show-div").remove()
+    }
+
+    //unhide
+    statContainer.hidden = false
+    leadContainer.hidden = false
+}
+
