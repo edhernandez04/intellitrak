@@ -85,11 +85,13 @@ let leadContainer = document.createElement('div')
             vehicles.forEach(car => theCarousel.innerHTML +=
                `<div class="card car-card">
                 <img src="${car.img_url}" height="120px" width="170px"></img>
-                <p align="center"> <br>  ${car.year} ${car.make} ${car.model} <br> 
-                Delivered: ${car.purchase_date} <br>
-                Purchase Price: $${car.purchase_price} <br>
-                Mileage: ${car.mileage}
-                </p>
+                <p align="center" style="margin:0; font-weight:bold"> <br>  ${car.year} ${car.make} ${car.model}</p>
+                    <div class="car-card-info" style="margin:0; padding:0">
+                        Delivered: ${car.purchase_date} <br>
+                        Purchase Price: $${car.purchase_price} <br>
+                        Mileage: ${car.mileage}
+                        
+                    </div>
                 <i class="fa fa-info-circle fa-1x view-vehicle-info-icon"  data-vehicle-id = "${car.id}"></i>
                 </div>`
                 )
@@ -144,15 +146,20 @@ document.addEventListener("DOMContentLoaded", function(){
 //going to need a show page for our vehicles
 
 //vehicle show page
-
+let carCardInfo  = document.getElementsByClassName("car-card-info")
 
 theCarousel.addEventListener("click", vehicleViewPage)
 
 function vehicleViewPage(e){
     if (e.target.classList.contains("view-vehicle-info-icon")){
-        console.log("worked")
+        
         statContainer.hidden = true
         leadContainer.hidden = true
+        // Array.from(carCardInfo).forEach(car => {
+            // car.hidden = true})
+        // theCarousel.classList.add("collapsed")
+        // carouselContainer.classList.add("collapsed")
+        
 
         renderShowPage(e.target.dataset.vehicleId)
 
@@ -163,35 +170,61 @@ function vehicleViewPage(e){
 
 function renderShowPage(vehicleId){
 
-    if (document.getElementById("vehicle-show-div")){
-        document.getElementById("vehicle-show-div").remove()
-    }
     //check if show page is already there and clear it 
-
+    if (document.getElementById("view-show-row")){
+        document.getElementById("view-show-row").remove()
+    }
+    
+    //create a row that the vehicle and info will be appended into
     let bootstrapRow = document.createElement("div")
     bootstrapRow.className = "row"
-    bootstrapRow.innerHTML = `<div class="col-md-4></div`
+    bootstrapRow.id = "view-show-row"
+    bootstrapRow.innerHTML = ``
+    
+    //create a container for the image
+    let pictureContainer = document.createElement("div")
+    pictureContainer.display = "block"
+    pictureContainer.innerHTML = `
+    <div class="col-md-3" id="pic-container"></div>`
 
-    let vehicleShowDiv = document.createElement("div")
-    vehicleShowDiv.className = "vehicle-show"
-    vehicleShowDiv.id = "vehicle-show-div"
+    bootstrapRow.append(pictureContainer)
 
+    //here is the image
     let vehicleImage = document.createElement("img")
     vehicleImage.className = "vehicle-show-image"
+
+    //create a new div for the vehicle info
     let vehicleInfo = document.createElement("div")
+    vehicleInfo.className = "col-md-6"
+
+    bootstrapRow.append(vehicleInfo)
+
+    // let vehicleShowDiv = document.createElement("div")
+    // vehicleShowDiv.className = "vehicle-show"
+    // vehicleShowDiv.id = "vehicle-show-div"
+
     
 
     fetch(`http://localhost:3000/vehicles/${vehicleId}`)
         .then(response => response.json())
         .then(body => {
             vehicleImage.src = `${body.img_url}`;
-            vehicleInfo.innerHTML = `<h2>${body.year} ${body.make} ${body.model}</h2>`
+            vehicleInfo.innerHTML = `<h2>${body.year} ${body.make} ${body.model}</h2>
+            <p>Vin: ${body.vin} </p><p>Mileage: ${body.mileage} </p>
+            <p>Color: ${body.color} </p><p>Mileage: ${body.purchase_date} </p>
+            <p>Purchase Price: $${body.purchase_price} </p>
+            <p>Description: ${body.description} </p>
+            `
         })
 
+   
+
+    contentContainer.append(bootstrapRow)
     
-    vehicleShowDiv.append(vehicleImage)
-    vehicleShowDiv.append(vehicleInfo)
-    contentContainer.append(vehicleShowDiv)
+    let picContainer = document.getElementById("pic-container")
+    picContainer.append(vehicleImage)
+    //bootstrapRow.append(pictureContainer)
+    //bootstrapRow.append(vehicleInfo)
         // append to main div
 }
 
@@ -210,5 +243,17 @@ function refreshDashboard(){
     //unhide
     statContainer.hidden = false
     leadContainer.hidden = false
+    // carCardInfo.hidden = false
 }
 
+let plusDiv = document.getElementById("plus-div")
+plusDiv.addEventListener("click", hideAll)
+
+
+function hideAll(){
+
+    statContainer.hidden = true
+    leadContainer.hidden = true
+    carouselContainer.hidden = true
+    
+}

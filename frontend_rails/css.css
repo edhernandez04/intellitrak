@@ -176,6 +176,7 @@ a[aria-expanded="true"] {
     overflow: auto;
     }
 
+
 .table-wrapper-scroll-y {
 display: block;
 }
@@ -191,5 +192,10 @@ display: block;
 }
 
 .vehicle-show-image{
-    width : 400px;
+    width : 500px;
+}
+
+.collapsed {
+
+    height: 275px;
 }
