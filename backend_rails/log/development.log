@@ -12329,3 +12329,965 @@ Completed 200 OK in 28ms (Views: 21.8ms | ActiveRecord: 6.1ms | Allocations: 170
 Completed 200 OK in 18ms (Views: 12.3ms | ActiveRecord: 5.7ms | Allocations: 13125)
 
 
+Started GET "/users" for ::1 at 2020-03-03 16:55:53 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:55:53 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:55:53 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by VehiclesController#index as */*
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mVehicle Load (4.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (2.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 19.5ms | ActiveRecord: 11.8ms | Allocations: 23878)
+
+
+Completed 200 OK in 38ms (Views: 13.4ms | ActiveRecord: 23.6ms | Allocations: 29816)
+
+
+Completed 200 OK in 46ms (Views: 10.9ms | ActiveRecord: 33.9ms | Allocations: 37700)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:55:57 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 1324)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:56:26 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.6ms | Allocations: 851)
+
+
+Started GET "/vehicles" for ::1 at 2020-03-03 16:57:05 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:57:05 -0500
+Started GET "/users" for ::1 at 2020-03-03 16:57:05 -0500
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mVehicle Load (1.3ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.1ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 31ms (Views: 29.9ms | ActiveRecord: 1.3ms | Allocations: 7125)
+
+
+  [1m[36mUser Load (30.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 43ms (Views: 41.4ms | ActiveRecord: 1.1ms | Allocations: 13294)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 53ms (Views: 22.6ms | ActiveRecord: 30.4ms | Allocations: 17152)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:57:07 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 862)
+
+
+Started GET "/users" for ::1 at 2020-03-03 16:57:26 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:57:26 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:57:26 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (0.9ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.0ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.9ms | Allocations: 6144)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 1.0ms | Allocations: 13193)
+
+
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 1.2ms | Allocations: 17093)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:57:32 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.2ms | Allocations: 892)
+
+
+Started GET "/users" for ::1 at 2020-03-03 16:58:11 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:58:11 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:58:11 -0500
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mVehicle Load (0.7ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.7ms | Allocations: 6748)
+
+
+  [1m[36mUser Load (7.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 23.9ms | ActiveRecord: 0.5ms | Allocations: 13292)
+
+
+Completed 200 OK in 26ms (Views: 17.8ms | ActiveRecord: 7.3ms | Allocations: 16975)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:58:12 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.6ms | Allocations: 835)
+
+
+Started GET "/users" for ::1 at 2020-03-03 16:58:35 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:58:35 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:58:35 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.5ms | Allocations: 6638)
+
+
+  [1m[36mVehicle Load (1.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.7ms | Allocations: 10514)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 33ms (Views: 31.5ms | ActiveRecord: 1.2ms | Allocations: 17172)
+
+
+Started GET "/vehicles/3" for ::1 at 2020-03-03 16:58:43 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.5ms | Allocations: 835)
+
+
+Started GET "/users" for ::1 at 2020-03-03 16:59:27 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:59:27 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:59:27 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (1.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 1.3ms | Allocations: 6816)
+
+
+Completed 200 OK in 23ms (Views: 20.1ms | ActiveRecord: 2.1ms | Allocations: 11023)
+
+
+  [1m[36mVehicle Load (23.3ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 34ms (Views: 10.9ms | ActiveRecord: 23.3ms | Allocations: 17167)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 16:59:29 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 835)
+
+
+Started GET "/users" for ::1 at 2020-03-03 16:59:39 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 16:59:39 -0500
+Started GET "/clients" for ::1 at 2020-03-03 16:59:39 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.1ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (9.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 2.7ms | Allocations: 5397)
+
+
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 1.1ms | Allocations: 12652)
+
+
+Completed 200 OK in 35ms (Views: 25.1ms | ActiveRecord: 9.8ms | Allocations: 17273)
+
+
+Started GET "/vehicles/1" for ::1 at 2020-03-03 16:59:41 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 835)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:00:44 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:00:44 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:00:44 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (2.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 1.9ms | Allocations: 4930)
+
+
+  [1m[36mVehicle Load (5.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 30.5ms | ActiveRecord: 2.2ms | Allocations: 17536)
+
+
+Completed 200 OK in 19ms (Views: 13.3ms | ActiveRecord: 5.2ms | Allocations: 10664)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:00:57 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:00:57 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:00:57 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 26.0ms | ActiveRecord: 0.7ms | Allocations: 11156)
+
+
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.5ms | Allocations: 7245)
+
+
+  [1m[36mClient Load (20.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 41ms (Views: 20.2ms | ActiveRecord: 20.8ms | Allocations: 17174)
+
+
+Started GET "/vehicles/1" for ::1 at 2020-03-03 17:00:58 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 835)
+
+
+Started GET "/clients" for ::1 at 2020-03-03 17:01:06 -0500
+Started GET "/users" for ::1 at 2020-03-03 17:01:06 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:01:06 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 9.7ms | ActiveRecord: 1.8ms | Allocations: 5006)
+
+
+  [1m[36mClient Load (15.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (14.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 36ms (Views: 20.8ms | ActiveRecord: 14.5ms | Allocations: 16958)
+
+
+Completed 200 OK in 23ms (Views: 7.1ms | ActiveRecord: 15.6ms | Allocations: 10811)
+
+
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Load (0.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Destroy (4.4ms)[0m  [1m[31mDELETE FROM "vehicles" WHERE "vehicles"."id" = $1[0m  [["id", 27]]
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Load (1.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Load (0.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Destroy (2.2ms)[0m  [1m[31mDELETE FROM "vehicles" WHERE "vehicles"."id" = $1[0m  [["id", 26]]
+  [1m[36mVehicle Load (1.0ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" ORDER BY "vehicles"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mVehicle Destroy (1.1ms)[0m  [1m[31mDELETE FROM "vehicles" WHERE "vehicles"."id" = $1[0m  [["id", 25]]
+Started GET "/users" for ::1 at 2020-03-03 17:03:34 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:03:34 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:03:34 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ClientsController#index as */*
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (3.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 42ms (Views: 9.6ms | ActiveRecord: 30.0ms | Allocations: 16444)
+
+
+Completed 200 OK in 47ms (Views: 28.4ms | ActiveRecord: 17.2ms | Allocations: 23738)
+
+
+Completed 200 OK in 55ms (Views: 31.2ms | ActiveRecord: 22.9ms | Allocations: 36950)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:03:39 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:03:39 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:03:39 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 2.0ms | Allocations: 5037)
+
+
+  [1m[36mVehicle Load (8.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  [1m[36mClient Load (8.9ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 17.9ms | ActiveRecord: 8.5ms | Allocations: 11035)
+
+
+Completed 200 OK in 44ms (Views: 34.2ms | ActiveRecord: 8.9ms | Allocations: 16409)
+
+
+Started GET "/vehicles/17" for ::1 at 2020-03-03 17:03:55 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"17"}
+  [1m[36mVehicle Load (0.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 1321)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:04:28 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:04:28 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:04:28 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mClient Load (2.4ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Processing by VehiclesController#index as */*
+Completed 200 OK in 21ms (Views: 18.3ms | ActiveRecord: 2.4ms | Allocations: 6361)
+
+
+  [1m[36mUser Load (20.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 35ms (Views: 14.0ms | ActiveRecord: 20.3ms | Allocations: 10953)
+
+
+  [1m[36mVehicle Load (14.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 59ms (Views: 43.9ms | ActiveRecord: 14.6ms | Allocations: 10594)
+
+
+Started GET "/vehicles/1" for ::1 at 2020-03-03 17:04:29 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 862)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:08:06 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:08:06 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:08:06 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.8ms | Allocations: 11023)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.6ms | Allocations: 6538)
+
+
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 1.5ms | Allocations: 16254)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:08:19 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:08:19 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:08:19 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mClient Load (2.4ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.9ms | Allocations: 4683)
+
+
+  [1m[36mVehicle Load (6.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 26ms (Views: 22.9ms | ActiveRecord: 2.4ms | Allocations: 11220)
+
+
+Completed 200 OK in 50ms (Views: 42.3ms | ActiveRecord: 6.8ms | Allocations: 16236)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:08:55 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:08:55 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:08:55 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (1.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (15.0ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 1.8ms | Allocations: 6313)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 34ms (Views: 19.1ms | ActiveRecord: 15.0ms | Allocations: 12445)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 54ms (Views: 52.1ms | ActiveRecord: 1.9ms | Allocations: 16454)
+
+
+Started GET "/clients" for ::1 at 2020-03-03 17:09:08 -0500
+Started GET "/users" for ::1 at 2020-03-03 17:09:08 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:09:08 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (16.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (17.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 6.5ms | ActiveRecord: 17.2ms | Allocations: 6729)
+
+
+  [1m[36mVehicle Load (11.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 28ms (Views: 10.9ms | ActiveRecord: 16.4ms | Allocations: 10400)
+
+
+Completed 200 OK in 37ms (Views: 9.8ms | ActiveRecord: 11.2ms | Allocations: 16257)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:09:24 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:09:24 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:09:24 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 1.0ms | Allocations: 5293)
+
+
+  [1m[36mVehicle Load (4.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.4ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 11ms (Views: 6.1ms | ActiveRecord: 4.2ms | Allocations: 9898)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 16ms (Views: 14.0ms | ActiveRecord: 1.4ms | Allocations: 11996)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:12:32 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:12:32 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:12:32 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (1.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 12.4ms | ActiveRecord: 1.4ms | Allocations: 11216)
+
+
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 1.6ms | Allocations: 16026)
+
+
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 1.6ms | Allocations: 7091)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:15:03 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:15:03 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:15:03 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (1.3ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 1.3ms | Allocations: 6733)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 36ms (Views: 34.5ms | ActiveRecord: 1.8ms | Allocations: 16237)
+
+
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 1.3ms | Allocations: 11378)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:15:14 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:15:14 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:15:14 -0500
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mClient Load (1.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (7.0ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 1.3ms | Allocations: 6479)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 1.0ms | Allocations: 11100)
+
+
+Completed 200 OK in 23ms (Views: 15.4ms | ActiveRecord: 7.0ms | Allocations: 16352)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:15:30 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:15:30 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:15:30 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.7ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.8ms | Allocations: 5291)
+
+
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.6ms | Allocations: 10312)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 1.7ms | Allocations: 16445)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:15:42 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:15:42 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:15:42 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (0.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mClient Load (1.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.9ms | Allocations: 10414)
+
+
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.6ms | Allocations: 6542)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 1.3ms | Allocations: 16445)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:16:01 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:16:01 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:16:01 -0500
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mClient Load (1.4ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mVehicle Load (1.2ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 1.4ms | Allocations: 7098)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 1.2ms | Allocations: 11967)
+
+
+Completed 200 OK in 27ms (Views: 25.4ms | ActiveRecord: 1.2ms | Allocations: 16239)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:16:33 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:16:33 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:16:33 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (2.1ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 2.1ms | Allocations: 6815)
+
+
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mVehicle Load (7.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 7.9ms | Allocations: 11224)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 24ms (Views: 15.4ms | ActiveRecord: 7.9ms | Allocations: 16383)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:16:45 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:16:45 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:16:45 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (0.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 1.3ms | Allocations: 4886)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (1.2ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.9ms | Allocations: 10404)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 1.2ms | Allocations: 16499)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:17:17 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:17:17 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:17:17 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mClient Load (1.1ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mVehicle Load (4.9ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.9ms | Allocations: 4679)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 1.1ms | Allocations: 11122)
+
+
+Completed 200 OK in 28ms (Views: 22.7ms | ActiveRecord: 4.9ms | Allocations: 16355)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:19:37 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:19:37 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:19:37 -0500
+Processing by VehiclesController#index as */*
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mClient Load (1.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mVehicle Load (7.6ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 11ms (Views: 9.2ms | ActiveRecord: 1.6ms | Allocations: 6544)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 14.6ms | ActiveRecord: 5.7ms | Allocations: 11535)
+
+
+Completed 200 OK in 31ms (Views: 23.0ms | ActiveRecord: 7.6ms | Allocations: 17170)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:20:36 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:20:36 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:20:36 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (0.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.5ms | ActiveRecord: 1.3ms | Allocations: 5279)
+
+
+  [1m[36mVehicle Load (5.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.6ms | Allocations: 10433)
+
+
+Completed 200 OK in 20ms (Views: 14.5ms | ActiveRecord: 5.4ms | Allocations: 16254)
+
+
+Started GET "/vehicles/2" for ::1 at 2020-03-03 17:21:07 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mVehicle Load (0.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.8ms | Allocations: 835)
+
+
+Started GET "/vehicles" for ::1 at 2020-03-03 17:22:41 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:22:41 -0500
+Started GET "/users" for ::1 at 2020-03-03 17:22:41 -0500
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mClient Load (1.1ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 1.1ms | Allocations: 6335)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 13.2ms | ActiveRecord: 1.5ms | Allocations: 12565)
+
+
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 1.1ms | Allocations: 16232)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:22:54 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:22:54 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:22:54 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (8.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (0.9ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (6.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 23ms (Views: 22.2ms | ActiveRecord: 0.9ms | Allocations: 10415)
+
+
+Completed 200 OK in 15ms (Views: 6.3ms | ActiveRecord: 8.8ms | Allocations: 5278)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 24ms (Views: 16.9ms | ActiveRecord: 6.5ms | Allocations: 16448)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:23:01 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:23:01 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:23:01 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (1.0ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 1.0ms | Allocations: 6319)
+
+
+  [1m[36mVehicle Load (6.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 1.4ms | Allocations: 11220)
+
+
+Completed 200 OK in 18ms (Views: 11.9ms | ActiveRecord: 6.4ms | Allocations: 16236)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:23:19 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:23:19 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:23:19 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (1.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (2.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 1.6ms | Allocations: 5646)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 10.8ms | ActiveRecord: 1.5ms | Allocations: 11220)
+
+
+Completed 200 OK in 20ms (Views: 16.8ms | ActiveRecord: 2.5ms | Allocations: 16236)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:23:28 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:23:28 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:23:28 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (0.7ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.9ms | Allocations: 4681)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  [1m[36mClient Load (5.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 20ms (Views: 19.0ms | ActiveRecord: 0.7ms | Allocations: 10519)
+
+
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: 22.9ms | ActiveRecord: 5.3ms | Allocations: 16448)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:23:40 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:23:40 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:23:40 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.9ms | Allocations: 4868)
+
+
+  [1m[36mVehicle Load (4.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 11ms (Views: 10.3ms | ActiveRecord: 0.5ms | Allocations: 11220)
+
+
+Completed 200 OK in 18ms (Views: 13.4ms | ActiveRecord: 4.4ms | Allocations: 16232)
+
+
+Started GET "/vehicles/1" for ::1 at 2020-03-03 17:24:23 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVehicle Load (0.8ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.8ms | Allocations: 835)
+
+
+Started GET "/vehicles/14" for ::1 at 2020-03-03 17:24:28 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"14"}
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 835)
+
+
+Started GET "/vehicles/12" for ::1 at 2020-03-03 17:24:30 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mVehicle Load (0.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 835)
+
+
+Started GET "/vehicles" for ::1 at 2020-03-03 17:26:12 -0500
+Started GET "/users" for ::1 at 2020-03-03 17:26:12 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:26:12 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (1.5ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.7ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.6ms | Allocations: 5193)
+
+
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 11.0ms | ActiveRecord: 1.5ms | Allocations: 11127)
+
+
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 1.7ms | Allocations: 16254)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:26:19 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:26:19 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:26:19 -0500
+Processing by ClientsController#index as */*
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mClient Load (1.6ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.3ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 1.6ms | Allocations: 7091)
+
+
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 1.3ms | Allocations: 16027)
+
+
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 2.5ms | Allocations: 11363)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:26:30 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:26:30 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:26:30 -0500
+Processing by UsersController#index as */*
+Processing by VehiclesController#index as */*
+Processing by ClientsController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mVehicle Load (1.1ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 1.0ms | Allocations: 4872)
+
+
+  [1m[36mClient Load (4.8ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 12.0ms | ActiveRecord: 1.1ms | Allocations: 11116)
+
+
+Completed 200 OK in 20ms (Views: 15.3ms | ActiveRecord: 4.8ms | Allocations: 16232)
+
+
+Started GET "/vehicles/1" for ::1 at 2020-03-03 17:28:28 -0500
+Processing by VehiclesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mVehicle Load (0.5ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles" WHERE "vehicles"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/vehicles_controller.rb:9:in `show'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 862)
+
+
+Started GET "/users" for ::1 at 2020-03-03 17:29:09 -0500
+Started GET "/clients" for ::1 at 2020-03-03 17:29:09 -0500
+Started GET "/vehicles" for ::1 at 2020-03-03 17:29:09 -0500
+Processing by UsersController#index as */*
+Processing by ClientsController#index as */*
+Processing by VehiclesController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mClient Load (1.3ms)[0m  [1m[34mSELECT "clients".* FROM "clients"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 1.1ms | Allocations: 5624)
+
+
+  [1m[36mVehicle Load (5.4ms)[0m  [1m[34mSELECT "vehicles".* FROM "vehicles"[0m
+  ↳ app/controllers/clients_controller.rb:4:in `index'
+  ↳ app/controllers/vehicles_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 12.1ms | ActiveRecord: 1.3ms | Allocations: 11571)
+
+
+Completed 200 OK in 18ms (Views: 11.9ms | ActiveRecord: 5.4ms | Allocations: 16215)
+
+
