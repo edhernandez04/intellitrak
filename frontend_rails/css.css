@@ -68,10 +68,27 @@ a {
     align-items: stretch;
 }
 
+/* sign in overlay */
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+/* content rows */
 .row {
     width: 100%;
 }
 
+/* main containers */
 #stat-container.row {
     height: 200px;
 }
@@ -94,6 +111,7 @@ a {
     margin: 0px;
 }
 
+/* side scrolling car carousel */
 .scrolling-wrapper {
     height: 350px;
     overflow-x: scroll;
@@ -106,12 +124,13 @@ a {
 
 }
 
+/* cards for cars */
 .card {
     padding: 25px;
     position: relative;
     left: 25px;
     top: 25px;
-    height: relative;
+    margin: 5px;
 }
 
 #sidebar.active {
@@ -170,6 +189,7 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 
+/* these two scrolls are both for leaderboard */
 .my-custom-scrollbar {
     position: relative;
     height: 250px;
@@ -179,3 +199,25 @@ a[aria-expanded="true"] {
 .table-wrapper-scroll-y {
 display: block;
 }
+
+/* sign in pop up */
+.form-elegant .font-small {
+    font-size: 0.8rem; }
+
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
+
+.form-elegant .modal-header {
+    border-bottom: none; }
+
+.modal-dialog .form-elegant .btn .fab {
+    color: #2196f3!important; }
+
+.form-elegant .modal-body, .form-elegant .modal-footer {
+    font-weight: 400; }
