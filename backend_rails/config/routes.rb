@@ -8,5 +8,6 @@ get '/users', to: 'users#index'
 get '/clients', to: 'clients#index'
 patch '/vehicles/:id', to: 'vehicles#update'
 post '/sales', to: 'sales#create'
+patch '/users/:id', to: 'users#update'
 
 end

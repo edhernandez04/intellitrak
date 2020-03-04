@@ -34,14 +34,26 @@ function start(login) {
 
         function displayUsers(users) {
             sortedUsers = users.sort((a, b) => (a.total_sales < b.total_sales) ? 1 : -1)
-            sortedUsers.forEach(user => leaderBoard.innerHTML +=
+            sortedUsers.forEach(user => {
+                if (user.id === loggedInUser.id){
+                    leaderBoard.innerHTML +=
+                        `<tr style="background-color:cyan">
+                        <td align="center" style="width: 20%;"> ${user.name} </td>
+                        <td align="center" style="width: 20%;"> ${user.position} </td>
+                        <td align="center" style="width: 20%;"> ${user.cars_sold} </td>
+                        <td align="center" style="width: 20%;"> $${user.total_sales} </td>
+                        <td align="center" style="width: 20%;"> ${user.team_name} </td>
+                        </tr>`
+                    } else {
+                        console.log(user.id, loggedInUser.id)
+                leaderBoard.innerHTML +=
                 `<tr>
             <td align="center" style="width: 20%"> ${user.name} </td>
             <td align="center" style="width: 20%"> ${user.position} </td>
             <td align="center" style="width: 20%"> ${user.cars_sold} </td>
             <td align="center" style="width: 20%"> $${user.total_sales} </td>
             <td align="center" style="width: 20%"> ${user.team_name} </td>
-            </tr>`)
+            </tr>`}})
         }
 
         function displayClients(clients) {
@@ -656,8 +668,6 @@ function renderSellPage(e){
     hideAll()
     renderShowPage(e.target.dataset.id) 
 
-    // document.getElementById("edit-button").hidden = true
-    // document.getElementById("sell-button").hidden = true
 
     let clientSelect = document.createElement("select")
         console.log(clientSelect)
@@ -684,6 +694,9 @@ function renderSellPage(e){
             sellInfoDiv.children[0].append(clientSelect)
             sellInfoDiv.children[0].innerHTML += `<button type="submit" class="btn btn-success">Sell</button>
          </form>`
+
+    document.getElementById("edit-button").remove()
+    document.getElementById("sell-button").remove()
             
         contentContainer.append(sellInfoDiv)
         let sellVehicleForm = document.getElementById("sell-vehicle-form")
@@ -731,9 +744,23 @@ function renderSellPage(e){
                         body: JSON.stringify(dataNewSale)
                     })
 
+                    //
+                    dataUserSales = {
+                        id: loggedInUser.id,
+                        sale_price_to_add: e.target[0].value,
+                        total_sales: e.target[0].value
+                    }
+
+                    fetch(`http://localhost:3000/users/${loggedInUser.id}`, {
+                            method: "PATCH",
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(dataUserSales)
+                        })
 
 
-        })
+            })
         })
 
         let sellInfoDiv = document.getElementById("sell-info-div")
@@ -742,3 +769,8 @@ function renderSellPage(e){
 
     
 }
+
+
+/////
+//inventory page
+/////
