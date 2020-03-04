@@ -28,29 +28,21 @@
             <a class="navbar-brand" href="#" style ="position: absolute; right: 0">Sticky top</a>
         </nav> -->
 <div id="content" class="wrapper">
-<nav id="sidebar">
+<nav id="sidebar" class="active">
     <div class="sidebar-header">
         <h3>Flatiron BMW</h3>
     </div>
 
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
+        <p>Logged in as:</p>
         <li class="active">
-            <a href="#homeSubmenu" id="dashboard-menu-item" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-tachometer 5x-fa"> </i> Dashboard</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
-                </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
+            <a href="#homeSubmenu" id="dashboard-menu-item"><i class="fa fa-tachometer 5x-fa"> </i> Dashboard</a>
         </li>
         <li>
-            <a href="#" id="leaderboard-menu-item">Leaderboard<i class="fas fa-chart-area"></i></a>
+            <a href="#leaderboard" id="leaderboard-menu-item">Leaderboard<i class="fas fa-chart-area"></i></a>
+        </li>
+        <li>
+            <a href="#clientTracker">Client Tracker</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Inventory</a>
@@ -67,17 +59,20 @@
             </ul>
         </li>
         <li>
-            <a href="#">Add Vehicle</a>
+            <a href="#addVehicle" id="add-vehicle-menu-item">Add Vehicle</a>
         </li>
         <li>
-            <a href="#">Performance</a>
+            <a href="#performance">Performance</a>
         </li>
     </ul>
+    <div class="drop-box dropzone">
+        <div>Sell Vehicle</div>
+    </div>
 </nav>
 
 <!-- inset body content here -->
 
 </div>
 </body>
-    <script src="scripts/javascript.js"></script>
+    <script src="scripts/merged.js"></script>
 </html>
