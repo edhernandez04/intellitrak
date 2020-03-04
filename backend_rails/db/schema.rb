@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_200338) do
   create_table "leads", force: :cascade do |t|
     t.integer "client_id"
     t.integer "user_id"
+    t.integer "vehicle_id"
     t.string "note"
     t.boolean "closed"
     t.datetime "created_at", precision: 6, null: false

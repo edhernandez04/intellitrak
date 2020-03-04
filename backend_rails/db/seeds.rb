@@ -9,12 +9,14 @@
 User.destroy_all
 Client.destroy_all
 Vehicle.destroy_all
+Lead.destroy_all
+Sale.destroy_all
 
-25.times do
+30.times do
     User.create!(name: Faker::Name.name, total_sales: Faker::Number.between(from: 500, to: 250000), cars_sold: Faker::Number.between(from: 1, to: 150), team_name: Faker::Team.creature,position: Faker::Military.army_rank)
 end
 
-35.times do
+100.times do
     Client.create!(fullname: Faker::FunnyName.two_word_name, phone_number: Faker::PhoneNumber.cell_phone, email: Faker::Internet.free_email, address: Faker::Address.street_address)
 end
 
@@ -39,3 +41,5 @@ Vehicle.create(year: 2018, make: "Honda", model: "Civic", img_url: 'https://www.
 Vehicle.create(year: 2019, make: "Honda", model: "Civic", img_url: 'https://cnet2.cbsistatic.com/img/VxlLREVubewUsgHPV_A7GUn8ILM=/1240x775/2019/05/20/95e44f16-4eda-427d-aae4-1df5309547f6/2019-honda-civic-touring-sedan-1.jpg', mileage: Faker::Number.between(from: 1, to: 95000) , purchase_date: Faker::Date.backward(days: 90) , purchase_price: Faker::Number.number(digits: 5) )
 Vehicle.create(year: 2019, make: "Cadillac", model: "Escalade", img_url: 'https://cars.usnews.com/static/images/Auto/izmo/i159423463/2020_cadillac_escalade_esv_angularfront.jpg', mileage: Faker::Number.between(from: 1, to: 95000) , purchase_date: Faker::Date.backward(days: 90) , purchase_price: Faker::Number.number(digits: 5) )
 Vehicle.create(year: 2019, make: "BMW", model: "760i", img_url: 'https://s1.cdn.autoevolution.com/images/news/2020-bmw-7-series-leaked-again-this-time-its-the-760li-xdrive-131658_1.jpg', mileage: Faker::Number.between(from: 1, to: 95000) , purchase_date: Faker::Date.backward(days: 90) , purchase_price: Faker::Number.number(digits: 5) )
+
+Lead.create(client_id: Client.first.id,user_id: User.first.id,vehicle_id: Vehicle.first.id, note: "Discussed Pricing & Car Facts", closed: false)
