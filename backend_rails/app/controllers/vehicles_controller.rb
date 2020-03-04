@@ -17,7 +17,7 @@ class VehiclesController < ApplicationController
 
     def update
         newVehicle = Vehicle.find(vehicleParamsForUpdate[:id])
-        newVehicle.update(vehicleParams)
+        newVehicle.update(vehicleParamsForUpdate)
 
     end
 

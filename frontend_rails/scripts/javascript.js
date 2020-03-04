@@ -93,8 +93,8 @@ let leadContainer = document.createElement('div')
                         Mileage: ${car.mileage}
                         
                     </div>
-                <i class="fa fa-info-circle fa-1x view-vehicle-info-icon"  data-vehicle-id = '${car.id}'></i>
-                <i class="fa fa-th fa-1x vehicle-grip-icon" id="draggable"  data-vehicle-id = '${car.id}'></i>
+                <i class="fa fa-info-circle fa-1x view-vehicle-info-icon"  data-vehicle-id = "${car.id}"></i>
+                <i class="fa fa-th fa-1x vehicle-grip-icon" id="draggable"  data-vehicle-id = "${car.id}"></i>
                 </div>`
                 )
         }
