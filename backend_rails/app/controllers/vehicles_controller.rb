@@ -15,11 +15,22 @@ class VehiclesController < ApplicationController
 
     end
 
+    def update
+        newVehicle = Vehicle.find(vehicleParamsForUpdate[:id])
+        newVehicle.update(vehicleParams)
+
+    end
+
     private
 
     def vehicleParams
         params.require(:vehicle).permit(:year, :make, :model, :trim, :color, :vin, :mileage, :purchase_date, 
         :purchase_price, :description, :img_url)
+    end
+
+    def vehicleParamsForUpdate
+        params.require(:vehicle).permit(:id, :year, :make, :model, :trim, :color, :vin, :mileage, :purchase_date, 
+        :purchase_price, :description, :img_url, :sale_price, :sold)
     end
 
 end

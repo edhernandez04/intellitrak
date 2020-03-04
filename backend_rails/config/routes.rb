@@ -6,5 +6,7 @@ post '/vehicles', to: 'vehicles#create'
 get 'vehicles/:id', to: 'vehicles#show'
 get '/users', to: 'users#index'
 get '/clients', to: 'clients#index'
+patch '/vehicles/:id', to: 'vehicles#update'
+post '/sales', to: 'sales#create'
 
 end

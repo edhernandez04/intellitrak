@@ -3,6 +3,7 @@ class CreateLeads < ActiveRecord::Migration[6.0]
     create_table :leads do |t|
       t.integer :client_id
       t.integer :user_id
+      t.integer :vehicle_id
       t.string :note
       t.boolean :closed
 
