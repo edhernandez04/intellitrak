@@ -1021,10 +1021,10 @@ function renderCarNotes(e) {
             if (lead.vehicle_id === parseInt(e.target.dataset.id)){
                 noteTable.innerHTML += `
                 <tr>
-                    <td align="center" style="width: 20%">${leadClient.fullname}</td>
-                    <td align="center" style="width: 20%">${userOwner.name}</td>
-                    <td align="center" style="width: 20%">${lead.note}</td>
-                    <td align="center" style="width: 20%">${lead.created_at.split('T')[0]}</td>
+                    <td style="width: 20%">${leadClient.fullname}</td>
+                    <td style="width: 20%">${userOwner.name}</td>
+                    <td style="width: 20%">${lead.note}</td>
+                    <td style="width: 20%">${lead.created_at.split('T')[0]}</td>
                     <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
                 </tr>
                     `
