@@ -41,7 +41,7 @@ function start(login) {
                         <td align="center" style="width: 20%;"> ${user.name} </td>
                         <td align="center" style="width: 20%;"> ${user.position} </td>
                         <td align="center" style="width: 20%;"> ${user.cars_sold} </td>
-                        <td align="center" style="width: 20%;"> $${user.total_sales} </td>
+                        <td align="center" style="width: 20%;" id="total-sales-td"> $${user.total_sales} </td>
                         <td align="center" style="width: 20%;"> ${user.team_name} </td>
                         </tr>`
                     } else {
@@ -762,7 +762,14 @@ function renderSellPage(e){
                             let theP = document.getElementById("total-sales-p")
                             let add = parseInt(document.getElementById("total-sales-p").innerText.split("$")[1].split(" ")[0])
                             let newAmount = add + parseInt(dataUserSales.sale_price_to_add)
-                            theP.innerText = `$${newAmount} / Quarterly Target: $250000`})
+                            theP.innerText = `$${newAmount} / Quarterly Target: $250000`
+                            
+                            let theTD = document.getElementById("total-sales-td")
+                            console.log(document.getElementById("total-sales-td"))
+                            theTD.innerText = `$${newAmount}`
+                            
+                            
+                            })
 
 
             })
