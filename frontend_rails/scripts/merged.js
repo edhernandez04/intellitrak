@@ -230,9 +230,19 @@ function openClientTracker() {
 
     hideAll()
 
+    let clientTrackerPanel = document.createElement('div')
+    clientTrackerPanel.id = 'client-table'
+
+    let title = document.createElement("h2")
+    title.innerHTML = `<i class="fa fa-address-card" style="margin-right: 13px" aria-hidden="true"></i></i>Client Tracker`
+    clientTrackerPanel.append(title)
+
     let clientTracker = document.createElement('table')
+    clientTrackerPanel.append(clientTracker)
+
     clientTracker.className = "table table-hover"
-    clientTracker.id = 'client-table'
+    //clientTracker.id = 'client-table'
+    
     clientTracker.innerHTML = `
                 <thead align="center">
                     <tr>
@@ -243,6 +253,8 @@ function openClientTracker() {
                         <th scope="col" width="20"> </th>
                     </tr>
                 </thead>`
+
+                
 
     fetch('http://localhost:3000/clients')
     .then(resp => resp.json()).then(clients => displayClients(clients))
@@ -257,9 +269,12 @@ function openClientTracker() {
             <td><button width="20%" id="add-client-${client.id}" class="btn-success"> Add Lead </button></td>
         </tr>`})
         }
-    mainContainer.append(clientTracker)
+    mainContainer.append(clientTrackerPanel)
 
     clientTracker.addEventListener("click", function(e){
+        if(e.target.tagName != "BUTTON"){
+            return null
+        }
         if (document.getElementById("add-lead-panel")) {
             document.getElementById("add-lead-panel").remove()
         }
@@ -457,6 +472,9 @@ function refreshDashboard() {
     if (document.getElementById("client-table")) {
         document.getElementById("client-table").remove()
     }
+    if (document.getElementById("inventory-panel")) {
+        document.getElementById("inventory-panel").remove()
+    }
 
     unhideDashboard()
 }
@@ -609,6 +627,9 @@ function hideAll() {
     }
     if (document.getElementById("add-lead-panel")) {
         document.getElementById("add-lead-panel").remove()
+    }
+    if (document.getElementById("inventory-panel")) {
+        document.getElementById("inventory-panel").remove()
     }
 }
 
@@ -794,7 +815,7 @@ function renderEditPage(e){
                         })
                         .then(() => {
                             fetch('http://localhost:3000/vehicles')
-                                .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
+                                .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
                         })
 
                 })
@@ -875,7 +896,7 @@ function renderSellPage(e){
                         })
                         .then(() => {
                             fetch('http://localhost:3000/vehicles')
-                                .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
+                                .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
                         })
 
 
@@ -925,7 +946,75 @@ function renderSellPage(e){
 
         let sellInfoDiv = document.getElementById("sell-info-div")
 
-    //need all clients 
+}
 
+
+let vehicleIndexMenuItem = document.getElementById("vehicle-index-menu")
+vehicleIndexMenuItem.addEventListener("click", function(){
+    fetch('http://localhost:3000/vehicles')
+        .then(resp => resp.json()).then(vehicles => {
+            renderVehiclesIndex(vehicles)
+        })
+})
+
+function renderVehiclesIndex(vehicles){
+
+    hideAll()
+        
+    let inventoryPanel = document.createElement("div")
+    inventoryPanel.style = "margin-left:10%"
+    let title = document.createElement("h2")
+    title.innerHTML = `<i style="margin-right: 13px;" class="fa fa-database" aria-hidden="true"></i>Inventory`
+    inventoryPanel.append(title)
+    inventoryPanel.id = "inventory-panel"
+    contentContainer.append(inventoryPanel)
+    let vehicleTable = document.createElement("table")
+    vehicleTable.classList = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
+    vehicleTable.style ="width:100%; height: 100%;"
+
+    vehicleTable.innerHTML = `
+            <thead>
+                    <tr>
+                        <th scope="col">Stock #</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Make</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Trim</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Vin</th>
+                        <th scope="col">Mileage</th>
+                        <th scope="col">Purchase Date</th>
+                        <th scope="col"></th>
+                    </tr>
+            </thead>
+            <tbody id="vehicle-table-body"></tbody>`
     
+    inventoryPanel.append(vehicleTable)
+    let vehicleTableBody = document.getElementById("vehicle-table-body")
+    vehicles.forEach(vehicle =>{
+        //create a new table row and append to vehicleTable
+        let newRow = document.createElement("tr")
+
+        newRow.innerHTML = `
+         <td>${vehicle.id}</td>
+         <td>${vehicle.year}</td>
+         <td>${vehicle.make}</td>
+         <td>${vehicle.model}</td>
+         <td>${vehicle.trim}</td>
+         <td>${vehicle.color}</td>
+         <td>${vehicle.vin}</td>
+         <td>${vehicle.mileage}</td>
+         <td>${vehicle.purchase_date}</td>
+         <td><button data-id="${vehicle.id}" class="btn btn-info" >Edit</button></td>`
+
+        vehicleTableBody.append(newRow)
+
+    })
+
+    inventoryPanel.addEventListener("click", function(e){
+        if(e.target.tagName === "BUTTON"){
+            renderEditPage(e)
+        }
+
+    })
 }
