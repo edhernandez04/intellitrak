@@ -581,3 +581,8 @@ a[aria-expanded=“true”] {
 
     width:50%;
 }
+
+.rendered-panel{
+    margin-top: 20px;
+
+}

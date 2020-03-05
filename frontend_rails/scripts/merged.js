@@ -241,6 +241,7 @@ function openClientTracker() {
 
     let clientTrackerPanel = document.createElement('div')
     clientTrackerPanel.id = 'client-table'
+    clientTrackerPanel.className = 'rendered-panel'
 
     let title = document.createElement("h2")
     title.innerHTML = `<i class="fa fa-address-card" style="margin-right: 13px" aria-hidden="true"></i></i>Client Tracker`
@@ -484,6 +485,12 @@ function refreshDashboard() {
     if (document.getElementById("inventory-panel")) {
         document.getElementById("inventory-panel").remove()
     }
+    if (document.getElementById("leaderboard-panel")) {
+        document.getElementById("leaderboard-panel").remove()
+    }
+    if(document.getElementById("delete-vehicle")){
+        document.getElementById("delete-vehicle").remove()
+    }
 
     unhideDashboard()
 }
@@ -639,6 +646,12 @@ function hideAll() {
     }
     if (document.getElementById("inventory-panel")) {
         document.getElementById("inventory-panel").remove()
+    }
+    if (document.getElementById("leaderboard-panel")) {
+        document.getElementById("leaderboard-panel").remove()
+    }
+    if (document.getElementById("delete-vehicle")) {
+        document.getElementById("delete-vehicle").remove()
     }
 }
 
@@ -995,12 +1008,14 @@ function renderVehiclesIndex(vehicles){
     hideAll()
         
     let inventoryPanel = document.createElement("div")
+    inventoryPanel.className = "rendered-panel"
     inventoryPanel.style = "width:100%;"
     let title = document.createElement("h2")
     title.innerHTML = `<i style="margin-right: 13px;" class="fa fa-database" aria-hidden="true"></i>Inventory`
     inventoryPanel.append(title)
     inventoryPanel.id = "inventory-panel"
     contentContainer.append(inventoryPanel)
+
     let vehicleTable = document.createElement("table")
     vehicleTable.classList = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
     vehicleTable.style ="width:100%; height: 100%;"
@@ -1050,4 +1065,90 @@ function renderVehiclesIndex(vehicles){
         }
 
     })
+}
+
+
+let leaderBoardMenuItem = document.getElementById("leaderboard-menu-item")
+
+leaderBoardMenuItem.addEventListener("click", renderLeaderBoard)
+function renderLeaderBoard(){
+
+    hideAll()
+
+    let leaderBoardDiv = document.createElement("div")
+    leaderBoardDiv.id = "leaderboard-panel"
+    leaderBoardDiv.className = "rendered-panel"
+    let title = document.createElement("h2")
+    title.innerHTML = `<i class="fa fa-line-chart" style="margin-right: 10px" aria-hidden="true"></i>Leader Board`
+    leaderBoardDiv.append(title)
+
+    contentContainer.append(leaderBoardDiv)
+
+
+    let leaderTable = document.createElement("table")
+    leaderTable.classList = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
+    leaderTable.style = "width:100%; height: 100%;"
+
+    leaderTable.innerHTML = `
+                <thead>
+                        <tr>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Vehicles Sold</th>
+                            <th scope="col">Sales Total</th>
+                            <th scope="col">Team Name</th>
+                        </tr>
+                </thead>
+                <tbody id="leaderboard-table-body"></tbody>`
+
+                leaderBoardDiv.append(leaderTable)
+                let leaderBoardTableBody= document.getElementById("leaderboard-table-body")
+
+    fetch('http://localhost:3000/users')
+        .then(resp => resp.json()).then(users => {
+            //render a new leaderboard table
+            let count = 1
+            users = users.sort((a, b) => (a.total_sales < b.total_sales) ? 1 : -1)
+            users.forEach(user=>{
+                let newRow = document.createElement("tr")
+
+                if (loggedInUser.id === user.id){
+                    newRow.style = "background-color: cyan"
+                    newRow.innerHTML = `
+                    <td>${count}</td>
+                    <td>${user.name}</td>
+                    <td>${user.position}</td>
+                    <td>${user.cars_sold}</td>
+                    <td>$${user.total_sales}</td>
+                    <td>${user.team_name}</td>`
+                } else{
+                    newRow.innerHTML = `
+                    <td>${count}</td>
+                    <td>${user.name}</td>
+                    <td>${user.position}</td>
+                    <td>${user.cars_sold}</td>
+                    <td>$${user.total_sales}</td>
+                    <td>${user.team_name}</td>`
+                }
+
+                leaderBoardTableBody.append(newRow)
+                count++
+            })
+        })
+}
+
+
+let performanceMenuItem = document.getElementById("performance-menu-item")
+
+performanceMenuItem.addEventListener("click", renderPerformance)
+
+function renderPerformance(){
+
+    hideAll()
+
+
+    //render the sold vehicles
+    //render performance info 
+
 }
