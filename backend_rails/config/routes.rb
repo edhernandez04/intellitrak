@@ -15,6 +15,7 @@ post '/clients', to: 'clients#create'
 
 get '/leads', to: 'leads#index'
 post '/leads', to: 'leads#create'
+delete '/leads/:id', to: 'leads#destroy'
 
 delete '/vehicles/:id', to: 'vehicles#destroy'
 
