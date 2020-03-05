@@ -418,7 +418,7 @@ function renderShowPage(vehicleId) {
     let vehicleToolbar = document.createElement("div")
     vehicleToolbar.className = "col-md-1"
     vehicleToolbar.innerHTML = `
-    <button class="btn btn-warning vehicle-toolbar" style="margin: 3px">Notes</button>
+    <button class="btn btn-warning vehicle-toolbar" id="note-button" style="margin: 3px">Notes</button>
     <button class="btn btn-info vehicle-toolbar" id="edit-button" style="margin: 3px">Edit</button>
     <button class="btn btn-success vehicle-toolbar" id="sell-button" style="margin: 3px"> Sell </button>`
 
@@ -451,6 +451,10 @@ function renderShowPage(vehicleId) {
             let sellButton = document.getElementById("sell-button")
             sellButton.dataset["id"] = body.id
             sellButton.addEventListener("click", renderSellPage)
+
+            let notesButton = document.getElementById("note-button")
+            notesButton.dataset["id"] = body.id
+            notesButton.addEventListener("click", renderCarNotes)
            
         })
 
@@ -810,7 +814,6 @@ function renderEditPage(e){
                         fetch(`http://localhost:3000/vehicles/${e.target.dataset.id}`, {
                             method: "DELETE"
                         }).then(hideAll())
-                        .then(document.getElementById("delete-vehicle").remove())
                         .then(refreshDashboard)
                             .then(() => {
                                 theCarousel.innerHTML = ""
@@ -818,7 +821,7 @@ function renderEditPage(e){
                             .then(() => {
                                 fetch('http://localhost:3000/vehicles')
                                     .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
-                            })
+                            }).then(document.getElementById("delete-vehicle").remove())
                             
 
                     } else {
@@ -994,6 +997,55 @@ function renderSellPage(e){
 
 }
 
+function renderCarNotes(e) {
+
+    if (document.getElementById("note-container")){
+        document.getElementById("note-container").remove()
+    } else {
+
+        let carView = document.getElementById('view-show-row')
+        let noteContainer = document.createElement('div')
+            noteContainer.id = "note-container"
+            noteContainer.className = "row"
+        let noteTable = document.createElement('table')
+        noteTable.className = "table table-hover"
+        noteTable.style = "margin-top: 10px;"
+        
+        carView.append(noteContainer)
+        noteContainer.append(noteTable)
+
+        noteTable.innerHTML = `<tr>
+            <th style="width: 20%">Client Name</th>
+            <th style="width: 20%">Lead Owner</th>
+            <th style="width: 20%">Note</th>
+            <th style="width: 20%">Last Updated</th>
+            <th style="width: 20%">  </th>
+            </tr>`
+            
+        allLeads.forEach(lead => {
+            console.log(lead)
+            let leadClient = allClients.find(client => (client.id === lead.client_id))
+            console.log("leadclient", leadClient)
+            let userOwner = allUsers.find(user => (user.id === lead.user_id))
+            console.log("user", userOwner)
+            console.log("etarget",e.target.dataset.id)
+            console.log(lead.vehicle_id)
+            if (lead.vehicle_id === parseInt(e.target.dataset.id)){
+                noteTable.innerHTML += `
+                <tr>
+                    <td align="center" style="width: 20%">${leadClient.fullname}</td>
+                    <td align="center" style="width: 20%">${userOwner.name}</td>
+                    <td align="center" style="width: 20%">${lead.note}</td>
+                    <td align="center" style="width: 20%">${lead.created_at.split('T')[0]}</td>
+                    <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
+                </tr>
+                    `
+            }
+        })
+    }
+}
+
+
 
 let vehicleIndexMenuItem = document.getElementById("vehicle-index-menu")
 vehicleIndexMenuItem.addEventListener("click", function(){
@@ -1147,6 +1199,11 @@ function renderPerformance(){
 
     hideAll()
 
+    let userCard = document.createElement("div")
+    userCard.classList = "card"
+
+
+    
 
     //render the sold vehicles
     //render performance info 
