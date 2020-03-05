@@ -69,7 +69,7 @@ function start(login) {
                         <td>${foundClient.fullname}</td>
                         <td>${foundCar.year} ${foundCar.make} ${foundCar.model}</td>
                         <td>${lead.note}</td>
-                        <td>Closed: ${lead.closed}</td>
+                        <td>${lead.created_at.split('T')[0]}</td>
                     </tr>` 
                 }
             })
@@ -127,7 +127,7 @@ function start(login) {
     }
 }
 
-// THE ACTUAL PAGE FRAMEWORKS - Preloaded prior to Login
+// THE ACTUAL PAGE FRAMEWORKS - Preloaded prior to Login #################################
 content = document.getElementById("content")
 contentContainer = document.createElement('div')
 testButton = document.getElementById("test-button")
@@ -198,7 +198,7 @@ let leadTable = document.createElement('table')
                         <th scope="col">Client Name</th>
                         <th scope="col">Vehicle</th>
                         <th scope="col">Note</th>
-                        <th scope="col">Purchase?</th>
+                        <th scope="col">Last Updated</th>
                     </tr>
                 </thead>`
 
@@ -206,7 +206,7 @@ content.append(contentContainer)
 contentContainer.append(statContainer, carouselContainer, leadContainer)
 statContainer.append(personalStats, leaderBoardContainer)
 
-//clientTracker page ********
+//CLIENT TRACKER PAGE #####################################################################
 let clientTrackerButton = document.getElementById("clientTracker-menu-item")
 let mainContainer = document.getElementById("main-container")
     clientTrackerButton.addEventListener("click", openClientTracker)
@@ -236,14 +236,14 @@ function openClientTracker() {
     .then(resp => resp.json()).then(clients => displayClients(clients))
 
     function displayClients(clients) {
-        clients.forEach(client => clientTracker.innerHTML +=
-            `<tr id="client-row-${client.id}">
+        clients.forEach(client => {clientTracker.innerHTML +=
+            `<tr id="${client.id}">
             <td>${client.fullname}</td>
             <td>${client.phone_number}</td>
             <td>${client.email}</td>
             <td>${client.address}</td>
             <td><button width="20%" id="add-client-${client.id}" class="btn-success"> Add Lead </button></td>
-        </tr>`)
+        </tr>`})
         }
     mainContainer.append(clientTracker)
 
@@ -263,57 +263,71 @@ function openClientTracker() {
                     vehicleSelect.append(newCar)
                 })
 
-
         let leadForm = document.createElement('div')
         leadForm.id = 'add-lead-panel'
         leadForm.innerHTML = `
-            <h2> <i class="fa fa-car" style="margin-right: 10px; margin-top: 20px"></i>Add Lead </h2>
+            <h2> <i class="fa fa-user" style="margin-right: 10px; margin-top: 20px"></i>Add Lead </h2>
             
-            <form style="" id="add-lead-form">
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <div class="form-group">
+            <form id="add-lead-form">
+            
+                    <div>
                         <label for="client_id">Client:</label>
-                        <input type="text" class="form-control" value='${e.target.parentNode.parentNode.children[0].textContent}'>
+                        <input type="hidden" class="form-control" value='${e.target.parentNode.parentNode.id}'>
+                            ${e.target.parentNode.parentNode.children[0].textContent}
+                        </input>
                      </div>
-                     <div class="form-group">
+                     <div>
                         <label for='vehicle_id'>Vehicle:</label>`
-                            leadForm.append(vehicleSelect)
-                            leadForm.innerHTML += 
-                            `<div class="form-group">
-                                <label for="note">Note:</label>
-                                <input type="text" class="form-control" id="note">
-                            </div>
-                            <button type="submit" class="btn btn-info">Add Lead</button>
-                        </div> 
-                    </form>`
+                            contentContainer.append(leadForm)
+                            let addLeadForm = document.getElementById('add-lead-form')
+                            addLeadForm.appendChild(vehicleSelect)
+                            addLeadForm.innerHTML +=     
+                    `</div> 
+                    <div class="form-group">
+                        <label for="note">Note:</label>
+                        <input type="text" class="form-control" id="note">
+                    </div>
+                        <button type="submit" class="btn btn-info">Add Lead</button>
+                
+            </form>`                          
 
-    contentContainer.append(leadForm)
-})
-
-    let addLeadForm = document.getElementById('add-lead-form')
-    addLeadForm.addEventListener("submit", function(e) {
+    addLeadForm.addEventListener('submit', function(e) {
         e.preventDefault()
-
         let input = {
             client_id: e.target[0].value,
+            user_id: loggedInUser.id,
             vehicle_id: e.target[1].value,
-            note: e.target[2].value
+            note: e.target[2].value,
+            closed: false
         }
+        debugger
+        let leadTable = document.getElementById('lead-table')
+        let newClient = allClients.find(client => (client.id === parseInt(e.target[0].value)))
+        let newVehicle = allVehicles.find(vehicle => (vehicle.id === parseInt(e.target[1].value)))
+        leadTable.innerHTML +=
+        `<tr>
+            <td>${newClient.fullname}</td>
+            <td>${newVehicle.year} ${newVehicle.make} ${newVehicle.model}</td>
+            <td>${e.target[2].value}</td>
+            <td>Just Now</td>
+        </tr>` 
 
-        fetch('http://localhost:3000/leads'), {
+        fetch('http://localhost:3000/leads', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(input)
-        }.then(document.getElementById(`client-row-${client.id}`).remove())
+        }).then(hideAll()) 
+            .then(unhideDashboard())
+                
+        })
     })
-
+})
 }
-    )}
 
 
+// END OF CLIENT TRACKER ##########################################################
 
 
 
@@ -542,6 +556,9 @@ function hideAll() {
     if (clientTracker) {
         clientTracker.hidden = true
     }
+    if (document.getElementById("add-lead-panel")) {
+        document.getElementById("add-lead-panel").remove()
+    }
 }
 
 // unhide dashboard
@@ -553,6 +570,7 @@ function unhideDashboard() {
     if (addVehiclePanel) {
         addVehiclePanel.hidden = true
     }
+
 }
 
 
