@@ -14,6 +14,11 @@ class LeadsController < ApplicationController
 
     end
 
+    def destroy
+        lead = Lead.find(params[:id])
+        lead.destroy
+    end
+
     private
 
     def leadParams
