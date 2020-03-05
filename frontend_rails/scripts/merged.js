@@ -572,7 +572,7 @@ function openAddVehicle() {
             })
             .then(() => {
                 fetch('http://localhost:3000/vehicles')
-                    .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
+                    .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
             })
         //need to rerender the vehicles carousel 
     })
