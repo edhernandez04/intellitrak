@@ -21,6 +21,11 @@ class VehiclesController < ApplicationController
 
     end
 
+    def destroy
+        newVehicle = Vehicle.find(params[:id])
+        newVehicle.destroy
+    end
+
     private
 
     def vehicleParams

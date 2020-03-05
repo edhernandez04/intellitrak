@@ -785,10 +785,34 @@ function renderEditPage(e){
             <button type="submit" class="btn btn-info">Update Vehicle</button>
               </div> 
             </form>
-
+            <button type="" data-id = "${body.id} "id="delete-vehicle" class="btn btn-danger" style="position:relative; bottom: 38px; left:150px">Delete Vehicle</button>
                 `
                 
                 contentContainer.append(editDiv)
+
+                let deleteVehicleButton = document.getElementById("delete-vehicle")
+                deleteVehicleButton.addEventListener("click", function(e){
+                    if (confirm('Are you sure you want to delete this vehicle from the database?')) {
+                        //fetch delete
+                        fetch(`http://localhost:3000/vehicles/${e.target.dataset.id}`, {
+                            method: "DELETE"
+                        }).then(hideAll())
+                        .then(document.getElementById("delete-vehicle").remove())
+                        .then(refreshDashboard)
+                            .then(() => {
+                                theCarousel.innerHTML = ""
+                            })
+                            .then(() => {
+                                fetch('http://localhost:3000/vehicles')
+                                    .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
+                            })
+                            
+
+                    } else {
+                        // Do nothing!
+                    }
+
+                })
 
                 let editVehicleForm = document.getElementById("edit-vehicle-form")
                 editVehicleForm.addEventListener("submit", function(e){
@@ -825,7 +849,7 @@ function renderEditPage(e){
                         .then(() => {
                             fetch('http://localhost:3000/vehicles')
                                 .then(resp => resp.json()).then(vehicles => displayVehicles(vehicles))
-                        })
+                        }).then(document.getElementById("delete-vehicle").remove())
 
                 })
 
@@ -971,7 +995,7 @@ function renderVehiclesIndex(vehicles){
     hideAll()
         
     let inventoryPanel = document.createElement("div")
-    inventoryPanel.style = "margin-left:10%"
+    inventoryPanel.style = "width:100%;"
     let title = document.createElement("h2")
     title.innerHTML = `<i style="margin-right: 13px;" class="fa fa-database" aria-hidden="true"></i>Inventory`
     inventoryPanel.append(title)
