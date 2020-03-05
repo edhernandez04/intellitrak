@@ -191,7 +191,11 @@ let theCarousel = document.createElement('div')
 
 function displayVehicles(vehicles) {
     sorted_vehicles = vehicles.sort((a, b) => (a.purchase_date > b.purchase_date) ? 1 : -1)
-    sorted_vehicles.forEach(car => theCarousel.innerHTML +=
+    sorted_vehicles.forEach(car => {
+       if(car.sold){
+
+       }else{
+        theCarousel.innerHTML +=
         `<div class="card car-card">
                 <img src="${car.img_url}" height="120px" width="170px"></img>
                 <p align="center" style="margin:0 ; font-weight: bold" > <br> ${car.year} ${car.make} ${car.model} </p>
@@ -203,7 +207,8 @@ function displayVehicles(vehicles) {
                 <i class='fa fa-info-circle fa-1x view-vehicle-info-icon'  data-vehicle-id = '${car.id}'></i>
                 <i class='fa fa-th fa-1x vehicle-grip-icon' id='draggable'  data-vehicle-id = '${car.id}'></i>
                 </div>`
-    )
+    }
+})
 }
 
 let leadContainer = document.createElement('div')
@@ -1039,10 +1044,10 @@ function renderCarNotes(e) {
             if (lead.vehicle_id === parseInt(e.target.dataset.id)){
                 noteTable.innerHTML += `
                 <tr>
-                    <td align="center" style="width: 20%">${leadClient.fullname}</td>
-                    <td align="center" style="width: 20%">${userOwner.name}</td>
-                    <td align="center" style="width: 20%">${lead.note}</td>
-                    <td align="center" style="width: 20%">${lead.created_at.split('T')[0]}</td>
+                    <td style="width: 20%">${leadClient.fullname}</td>
+                    <td style="width: 20%">${userOwner.name}</td>
+                    <td style="width: 20%">${lead.note}</td>
+                    <td style="width: 20%">${lead.created_at.split('T')[0]}</td>
                     <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
                 </tr>
                     `
