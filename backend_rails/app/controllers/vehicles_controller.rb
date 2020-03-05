@@ -35,7 +35,7 @@ class VehiclesController < ApplicationController
 
     def vehicleParamsForUpdate
         params.require(:vehicle).permit(:id, :year, :make, :model, :trim, :color, :vin, :mileage, :purchase_date, 
-        :purchase_price, :description, :img_url, :sale_price, :sold)
+        :purchase_price, :description, :img_url, :sale_price, :sold, :buyer_id)
     end
 
 end
