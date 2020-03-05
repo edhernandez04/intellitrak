@@ -497,8 +497,8 @@ function refreshDashboard() {
     if (document.getElementById("leaderboard-panel")) {
         document.getElementById("leaderboard-panel").remove()
     }
-    if(document.getElementById("delete-vehicle")){
-        document.getElementById("delete-vehicle").remove()
+    if(document.getElementById("performance-panel")){
+        document.getElementById("performance-panel").remove()
     }
 
     unhideDashboard()
@@ -661,6 +661,12 @@ function hideAll() {
     }
     if (document.getElementById("delete-vehicle")) {
         document.getElementById("delete-vehicle").remove()
+    }
+    if (document.getElementById("delete-vehicle")) {
+        document.getElementById("delete-vehicle").remove()
+    }
+    if (document.getElementById("performance-panel")) {
+        document.getElementById("performance-panel").remove()
     }
 }
 
@@ -932,7 +938,8 @@ function renderSellPage(e){
                     let data = {
                         id: parseInt(e.target.dataset.id),
                         sale_price: e.target[0].value,
-                        sold: true
+                        sold: true,
+                        buyer_id: loggedInUser.id
                     }
                     console.log(data)
 
@@ -1204,13 +1211,52 @@ function renderPerformance(){
 
     hideAll()
 
+    let performanceCard = document.createElement("div")
+    performanceCard.id = "performance-panel"
     let userCard = document.createElement("div")
+    performanceCard.append(userCard)
     userCard.classList = "card"
-
-
+    userCard.innerHTML = `
     
+    <div class="row">
+    <div class="col-md-3"><h2>${loggedInUser.name}</h2>
+    <h4>${loggedInUser.position}</h4></div>
+    <div class = "col-md-3"></div>
+    <div class="col-md-6"><h3>Total Sales: $${loggedInUser.total_sales}</h3></div>
+    </div>`
+    contentContainer.append(performanceCard)
+    let scrollingWrapper = document.createElement("div")
+    scrollingWrapper.className = "scrolling-wrapper-2"
+    performanceCard.append(scrollingWrapper)
+    
+    
+    displaySoldVehicles(allVehicles, scrollingWrapper)
+
+
 
     //render the sold vehicles
     //render performance info 
 
+}
+
+function displaySoldVehicles(vehicles, scrollingwrapper) {
+    sorted_vehicles = vehicles.sort((a, b) => (a.purchase_date > b.purchase_date) ? 1 : -1)
+    sorted_vehicles.forEach(car => {
+        if (car.sold && loggedInUser.id === car.buyer_id) {
+                scrollingwrapper.innerHTML +=
+                    `<div class="card car-card">
+                            <img src="${car.img_url}" height="120px" width="170px"></img>
+                            <p align="center" style="margin:0 ; font-weight: bold" > <br> ${car.year} ${car.make} ${car.model} </p>
+                                <div class=“car-card-info” style=“margin:0; padding:0">
+                                Delivered: ${car.purchase_date} <br>
+                                Purchase Price: $${car.purchase_price} <br>
+                                Mileage: ${car.mileage} <br>
+                                Sale Price: ${car.sale_price} <br>
+                                Commision: $${Math.round((car.sale_price - (car.purchase_price * 1.2)) * .4)}
+                                </div>
+                            </div>`
+        } else {
+            
+        }
+    })
 }

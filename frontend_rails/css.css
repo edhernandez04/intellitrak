@@ -119,6 +119,13 @@ a {
     white-space: nowrap;
   }
 
+  .scrolling-wrapper-2 {
+      height: 400px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+  }
+
 .car-card {
     display: inline-block;
     margin-left: 3px;
