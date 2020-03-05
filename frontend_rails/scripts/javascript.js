@@ -34,20 +34,8 @@ let leadContainer = document.createElement('div')
         let personalStatCard = document.createElement('div')
             personalStatCard.className = 'card'
             personalStatCard.style = 'width: 350px'
-            // based on logged in User - when data is created insert function to interpolate through here **********************
-            personalStatCard.innerHTML = `
-            <h5>Ed Hernandez</h5>
-            <h6> President of Sales</h6>
-            <p> $435365436 / $500000000 </p>
-            `
-            let progress = document.createElement('div')
-                progress.className = 'progress'
-                    // interpolate results to adjust the bar based on performance ***********************
-                progress.innerHTML = `
-                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                `
-            
-    let leaderBoardContainer = document.createElement('div')
+
+        let leaderBoardContainer = document.createElement('div')
         leaderBoardContainer.className = "col-8"
         let leaderStatCard = document.createElement('div')
             leaderStatCard.className = "card"
@@ -55,36 +43,23 @@ let leadContainer = document.createElement('div')
     
             let leaderBoard = document.createElement('table')
                 leaderBoard.id = 'leaderboard'
-                leaderBoard.className = "table-wrapper-scroll-y my-custom-scrollbar"
+                leaderBoard.className = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
                 leaderBoard.cellSpacing = '0'
                 leaderBoard.innerHTML = `
-                <thead>
-                <tr>
-                    <th style="width: 20%"> <button style="width: 100%;"> Daily </button> </th>
-                    <th style="width: 20%"> <button style="width: 100%;"> Weekly </button> </th>
-                    <th style="width: 20%"> <button style="width: 100%;">  Monthly </button> </th>
-                    <th style="width: 20%"> <button style="width: 100%;"> Yearly </button> </th>
-                    <th style="width: 20%"> <button style="width: 100%;"> Total </button> </th>
-                </tr>
-                </thead>`
+                    <style="width: 100%"> <center><h6>TOP SALES REPS</h6></center>`
+            
 
-                function displayUsers(users){
-                    users.forEach(user => leaderBoard.innerHTML += 
-                        `<tr>
-                        <td align="center"> ${user.name} </td>
-                        <td align="center"> ${user.position} </td>
-                        <td align="center"> ${user.cars_sold} </td>
-                        <td align="center"> $${user.total_sales} </td>
-                        <td align="center"> ${user.team_name} </td>
-                        </tr>` )
-                    }
-                    
-    let theCarousel = document.createElement('div')
+    let carouselContainer = document.createElement('div')
+        carouselContainer.className = 'row'
+        carouselContainer.id = "carousel-container"
+
+        let theCarousel = document.createElement('div')
         theCarousel.className = "scrolling-wrapper"
         theCarousel.id = 'carousel'
         function displayvehicles(vehicles){
-            vehicles.forEach(car => theCarousel.innerHTML +=
-               `<div class="card car-card">
+            sorted_vehicles = vehicles.sort((a,b) => (a.purchase_date > b.purchase_date) ? 1 : -1 )
+            sorted_vehicles.forEach(car => theCarousel.innerHTML +=
+                `<div class="card car-card">
                 <img src="${car.img_url}" height="120px" width="170px"></img>
                 <p align="center" style="margin:0; font-weight:bold"> <br>  ${car.year} ${car.make} ${car.model}</p>
                     <div class="car-card-info" style="margin:0; padding:0">
@@ -98,32 +73,28 @@ let leadContainer = document.createElement('div')
                 </div>`
                 )
         }
-        
+
+    let leadContainer = document.createElement('div')
+        leadContainer.className = 'row'
+        leadContainer.id = 'lead-container'
+
         let leadTable = document.createElement('table')
-            leadTable.className = "table table-striped"
-            leadTable.id = 'lead-table'
-            leadTable.innerHTML = `
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Number</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Address</th>
-                    </tr>
-                </thead>`
-            function displayClients(clients){
-                clients.forEach(client => leadTable.innerHTML +=
-                    `<tr>
-                        <td>${client.fullname}</td>
-                        <td>${client.phone_number}</td>
-                        <td>${client.email}</td>
-                        <td>${client.address}</td>
-                    </tr>`)
-            }
-            
+        leadTable.className = "table table-striped"
+        leadTable.id = 'lead-table'
+        leadTable.innerHTML = `
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                </tr>
+            </thead>`
+
 content.append(contentContainer)
 contentContainer.append(statContainer, carouselContainer,leadContainer)
 statContainer.append(personalStats,leaderBoardContainer)
+leadContainer.append(leadTable)
 carouselContainer.append(theCarousel)
 leaderBoardContainer.append(leaderStatCard)
 leaderStatCard.append(leaderBoard)

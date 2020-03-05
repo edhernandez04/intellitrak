@@ -1,5 +1,8 @@
 let login = false
 allUsers = []
+allLeads = []
+allVehicles = []
+allClients = []
 body = document.getElementsByTagName('body')[0]
 
 function on() {
@@ -14,15 +17,25 @@ start(login)
 function start(login) {
     if (login) {
         off()
+
         fetch('http://localhost:3000/users')
-            .then(resp => resp.json()).then(users => {
-                allUsers = users;
-                displayUsers(users)
-            })
-        fetch('http://localhost:3000/clients')
-            .then(resp => resp.json()).then(clients => displayClients(clients))
+        .then(resp => resp.json()).then(users => {
+            allUsers = users;
+            displayUsers(users)})
+
         fetch('http://localhost:3000/vehicles')
-            .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
+            .then(resp => resp.json()).then(vehicles => {
+                allVehicles = vehicles; 
+                displayVehicles(vehicles)})
+
+        fetch('http://localhost:3000/clients')
+            .then(resp => resp.json()).then(clients => {
+                allClients = clients})
+        
+        fetch('http://localhost:3000/leads')
+            .then(resp => resp.json()).then(leads => {
+                displayLeads(leads)})
+
         personalStatCard.innerHTML = `
         <h5>${loggedInUser.name}</h5>
         <h6>${loggedInUser.position}</h6>
@@ -56,22 +69,32 @@ function start(login) {
             </tr>`}})
         }
 
-        function displayClients(clients) {
-            clients.forEach(client => leadTable.innerHTML +=
-                `<tr>
-                <td>${client.fullname}</td>
-                <td>${client.phone_number}</td>
-                <td>${client.email}</td>
-                <td>${client.address}</td>
-            </tr>`)
+        function displayLeads(leads) {
+            
+            allLeads = leads
+            leads.forEach(lead => {
+                if (lead.user_id === loggedInUser.id){
+                let foundClient = allClients.find(client => (client.id === lead.client_id))
+                let foundCar = allVehicles.find(car => (car.id === lead.vehicle_id))
+                leadTable.innerHTML +=
+                    `<tr>
+                        <td>${foundClient.fullname}</td>
+                        <td>${foundCar.year} ${foundCar.make} ${foundCar.model}</td>
+                        <td>${lead.note}</td>
+                        <td>${lead.created_at.split('T')[0]}</td>
+                    </tr>` 
+                }
+            })
         }
+
         personalStatCard.append(progress)
         leadContainer.append(leadTable)
         carouselContainer.append(theCarousel)
         leaderBoardContainer.append(leaderStatCard)
         leaderStatCard.append(leaderBoard)
         personalStats.append(personalStatCard)
-        // overlay login page if user is not logged in *******************************************************************
+        
+// overlay login page if user is not logged in *******************************************************************   
     } else if (login === false) {
         fetch('http://localhost:3000/users')
             .then(resp => resp.json()).then(users => {
@@ -115,7 +138,8 @@ function start(login) {
         })
     }
 }
-// THE ACTUAL PAGE FRAMEWORKS - Preloaded prior to Login
+
+// THE ACTUAL PAGE FRAMEWORKS - Preloaded prior to Login #################################
 content = document.getElementById("content")
 contentContainer = document.createElement('div')
 testButton = document.getElementById("test-button")
@@ -132,32 +156,32 @@ collapseIcon.addEventListener("click", function (e) {
 contentContainer.className = 'container'
 contentContainer.id = 'main-container'
 let statContainer = document.createElement('div')
-statContainer.className = 'row'
-statContainer.id = "stat-container"
+    statContainer.className = 'row'
+    statContainer.id = "stat-container"
 let personalStats = document.createElement('div')
-personalStats.className = "col-4"
+    personalStats.className = "col-4"
 let personalStatCard = document.createElement('div')
-personalStatCard.className = 'card'
-personalStatCard.style = 'width: 350px'
+    personalStatCard.className = 'card'
+    personalStatCard.style = 'width: 350px'
 let leaderBoardContainer = document.createElement('div')
-leaderBoardContainer.className = "col-8"
+    leaderBoardContainer.className = "col-8"
 let leaderStatCard = document.createElement('div')
-leaderStatCard.className = "card"
-leaderStatCard.id = 'leaderBoardCard'
+    leaderStatCard.className = "card"
+    leaderStatCard.id = 'leaderBoardCard'
 let leaderBoard = document.createElement('table')
-leaderBoard.id = 'leaderboard'
-leaderBoard.className = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
-leaderBoard.cellSpacing = '0'
-leaderBoard.innerHTML = `
-                    <style="width: 100%"> <center><h6>TOP SALES REPS</h6></center>`
+    leaderBoard.id = 'leaderboard'
+    leaderBoard.className = "table-wrapper-scroll-y my-custom-scrollbar table table-hover"
+    leaderBoard.cellSpacing = '0'
+    leaderBoard.innerHTML = `
+        <style="width: 100%"> <center><h6>TOP SALES REPS</h6></center>`
 let carouselContainer = document.createElement('div')
-carouselContainer.className = 'row'
-carouselContainer.id = "carousel-container"
+    carouselContainer.className = 'row'
+    carouselContainer.id = "carousel-container"
 let theCarousel = document.createElement('div')
-theCarousel.className = "scrolling-wrapper"
-theCarousel.id = 'carousel'
+    theCarousel.className = "scrolling-wrapper"
+    theCarousel.id = 'carousel'
 
-function displayvehicles(vehicles) {
+function displayVehicles(vehicles) {
     sorted_vehicles = vehicles.sort((a, b) => (a.purchase_date > b.purchase_date) ? 1 : -1)
     sorted_vehicles.forEach(car => theCarousel.innerHTML +=
         `<div class="card car-card">
@@ -173,24 +197,151 @@ function displayvehicles(vehicles) {
                 </div>`
     )
 }
+
 let leadContainer = document.createElement('div')
-leadContainer.className = 'row'
-leadContainer.id = 'lead-container'
+    leadContainer.className = 'row'
+    leadContainer.id = 'lead-container'
 let leadTable = document.createElement('table')
-leadTable.className = "table table-striped"
-leadTable.id = 'lead-table'
-leadTable.innerHTML = `
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address</th>
-                </tr>
-            </thead>`
+    leadTable.className = "table table-striped"
+    leadTable.id = 'lead-table'
+    leadTable.innerHTML = `
+                <thead>
+                    <tr>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Vehicle</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Last Updated</th>
+                    </tr>
+                </thead>`
+
 content.append(contentContainer)
 contentContainer.append(statContainer, carouselContainer, leadContainer)
 statContainer.append(personalStats, leaderBoardContainer)
+
+//CLIENT TRACKER PAGE #####################################################################
+let clientTrackerButton = document.getElementById("clientTracker-menu-item")
+let mainContainer = document.getElementById("main-container")
+    clientTrackerButton.addEventListener("click", openClientTracker)
+
+function openClientTracker() {
+    if (document.getElementById("client-table")) {
+        document.getElementById("client-table").remove()
+    }
+
+    hideAll()
+
+    let clientTracker = document.createElement('table')
+    clientTracker.className = "table table-hover"
+    clientTracker.id = 'client-table'
+    clientTracker.innerHTML = `
+                <thead align="center">
+                    <tr>
+                        <th scope="col" width="20">Name</th>
+                        <th scope="col" width="20">Number</th>
+                        <th scope="col" width="20">Email</th>
+                        <th scope="col" width="20">Address</th>
+                        <th scope="col" width="20"> </th>
+                    </tr>
+                </thead>`
+
+    fetch('http://localhost:3000/clients')
+    .then(resp => resp.json()).then(clients => displayClients(clients))
+
+    function displayClients(clients) {
+        clients.forEach(client => {clientTracker.innerHTML +=
+            `<tr id="${client.id}">
+            <td>${client.fullname}</td>
+            <td>${client.phone_number}</td>
+            <td>${client.email}</td>
+            <td>${client.address}</td>
+            <td><button width="20%" id="add-client-${client.id}" class="btn-success"> Add Lead </button></td>
+        </tr>`})
+        }
+    mainContainer.append(clientTracker)
+
+    clientTracker.addEventListener("click", function(e){
+        if (document.getElementById("add-lead-panel")) {
+            document.getElementById("add-lead-panel").remove()
+        }
+        hideAll()
+
+        let vehicleSelect = document.createElement('select')
+        fetch('http://localhost:3000/vehicles')
+            .then(resp => resp.json()).then(vehicles => {
+                vehicles.forEach(car => {
+                    let newCar = document.createElement('option')
+                    newCar.value = car.id
+                    newCar.innerHTML = `${car.year} ${car.make} ${car.model}`
+                    vehicleSelect.append(newCar)
+                })
+
+        let leadForm = document.createElement('div')
+        leadForm.id = 'add-lead-panel'
+        leadForm.innerHTML = `
+            <h2> <i class="fa fa-user" style="margin-right: 10px; margin-top: 20px"></i>Add Lead </h2>
+            
+            <form id="add-lead-form">
+            
+                    <div>
+                        <label for="client_id">Client:</label>
+                        <input type="hidden" class="form-control" value='${e.target.parentNode.parentNode.id}'>
+                            ${e.target.parentNode.parentNode.children[0].textContent}
+                        </input>
+                     </div>
+                     <div>
+                        <label for='vehicle_id'>Vehicle:</label>`
+                            contentContainer.append(leadForm)
+                            let addLeadForm = document.getElementById('add-lead-form')
+                            addLeadForm.appendChild(vehicleSelect)
+                            addLeadForm.innerHTML +=     
+                    `</div> 
+                    <div class="form-group">
+                        <label for="note">Note:</label>
+                        <input type="text" class="form-control" id="note">
+                    </div>
+                        <button type="submit" class="btn btn-info">Add Lead</button>
+                
+            </form>`                          
+
+    addLeadForm.addEventListener('submit', function(e) {
+        e.preventDefault()
+        let input = {
+            client_id: e.target[0].value,
+            user_id: loggedInUser.id,
+            vehicle_id: e.target[1].value,
+            note: e.target[2].value,
+            closed: false
+        }
+        debugger
+        let leadTable = document.getElementById('lead-table')
+        let newClient = allClients.find(client => (client.id === parseInt(e.target[0].value)))
+        let newVehicle = allVehicles.find(vehicle => (vehicle.id === parseInt(e.target[1].value)))
+        leadTable.innerHTML +=
+        `<tr>
+            <td>${newClient.fullname}</td>
+            <td>${newVehicle.year} ${newVehicle.make} ${newVehicle.model}</td>
+            <td>${e.target[2].value}</td>
+            <td>Just Now</td>
+        </tr>` 
+
+        fetch('http://localhost:3000/leads', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(input)
+        }).then(hideAll()) 
+            .then(unhideDashboard())
+                
+        })
+    })
+})
+}
+
+
+// END OF CLIENT TRACKER ##########################################################
+
+
 
 
 let carCardInfo = document.getElementsByClassName("car-card-info")
@@ -208,7 +359,6 @@ function vehicleViewPage(e) {
         //hidden show page = false
     }
 }
-
 
 function renderShowPage(vehicleId) {
 
@@ -304,6 +454,9 @@ function refreshDashboard() {
     if (document.getElementById("sell-vehicle-form")) {
         document.getElementById("sell-vehicle-form").remove()
     }
+    if (document.getElementById("client-table")) {
+        document.getElementById("client-table").remove()
+    }
 
     unhideDashboard()
 }
@@ -382,9 +535,7 @@ function openAddVehicle() {
                
             <button type="submit" class="btn btn-info">Add Vehicle</button>
               </div> 
-            </form>
-          
-    `
+            </form>`
 
     contentContainer.append(addVehiclePanel)
 
@@ -423,28 +574,20 @@ function openAddVehicle() {
                 fetch('http://localhost:3000/vehicles')
                     .then(resp => resp.json()).then(vehicles => displayvehicles(vehicles))
             })
-
         //need to rerender the vehicles carousel 
-
     })
-
-
-
 }
 
 //
 // render add lead page
 //
 
-
-
-
-
 // hide dashboard
 function hideAll() {
 
     let viewShowRow = document.getElementById("view-show-row")
     let addVehiclePanel = document.getElementById("add-vehicle-panel")
+    let clientTracker = document.getElementById('client-table')
     statContainer.hidden = true
     leadContainer.hidden = true
     carouselContainer.hidden = true
@@ -461,6 +604,12 @@ function hideAll() {
         document.getElementById("sell-vehicle-form").remove()
     }
 
+    if (clientTracker) {
+        clientTracker.hidden = true
+    }
+    if (document.getElementById("add-lead-panel")) {
+        document.getElementById("add-lead-panel").remove()
+    }
 }
 
 // unhide dashboard
@@ -472,6 +621,7 @@ function unhideDashboard() {
     if (addVehiclePanel) {
         addVehiclePanel.hidden = true
     }
+
 }
 
 
@@ -651,8 +801,6 @@ function renderEditPage(e){
 
             })
 
-
-
     // append to the main element
 }
 
@@ -781,8 +929,3 @@ function renderSellPage(e){
 
     
 }
-
-
-/////
-//inventory page
-/////
