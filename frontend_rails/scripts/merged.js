@@ -492,8 +492,8 @@ function refreshDashboard() {
     if (document.getElementById("leaderboard-panel")) {
         document.getElementById("leaderboard-panel").remove()
     }
-    if(document.getElementById("delete-vehicle")){
-        document.getElementById("delete-vehicle").remove()
+    if(document.getElementById("performance-panel")){
+        document.getElementById("performance-panel").remove()
     }
 
     unhideDashboard()
@@ -656,6 +656,12 @@ function hideAll() {
     }
     if (document.getElementById("delete-vehicle")) {
         document.getElementById("delete-vehicle").remove()
+    }
+    if (document.getElementById("delete-vehicle")) {
+        document.getElementById("delete-vehicle").remove()
+    }
+    if (document.getElementById("performance-panel")) {
+        document.getElementById("performance-panel").remove()
     }
 }
 
@@ -1199,11 +1205,22 @@ function renderPerformance(){
 
     hideAll()
 
+    let performanceCard = document.createElement("div")
+    performanceCard.id = "performance-panel"
     let userCard = document.createElement("div")
+    performanceCard.append(userCard)
     userCard.classList = "card"
-
-
+    userCard.innerHTML = `
     
+    <div class="row">
+    <div class="col-md-3"><h2>${loggedInUser.name}</h2>
+    <h4>${loggedInUser.position}</h4></div>
+    <div class = "col-md-3"></div>
+    <div class="col-md-6"><h3>Total Sales: $${loggedInUser.total_sales}</h3></div>
+    </div>`
+
+    contentContainer.append(performanceCard)
+
 
     //render the sold vehicles
     //render performance info 
