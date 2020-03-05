@@ -58,7 +58,6 @@ function start(login) {
                         <td align="center" style="width: 20%;"> ${user.team_name} </td>
                         </tr>`
                     } else {
-                        console.log(user.id, loggedInUser.id)
                 leaderBoard.innerHTML +=
                 `<tr>
             <td align="center" style="width: 20%"> ${user.name} </td>
@@ -78,10 +77,11 @@ function start(login) {
                 let foundCar = allVehicles.find(car => (car.id === lead.vehicle_id))
                 leadTable.innerHTML +=
                     `<tr>
-                        <td>${foundClient.fullname}</td>
-                        <td>${foundCar.year} ${foundCar.make} ${foundCar.model}</td>
-                        <td>${lead.note}</td>
-                        <td>${lead.created_at.split('T')[0]}</td>
+                        <th align="center" style="width: 20%">${foundClient.fullname}</th>
+                        <th align="center" style="width: 20%">${foundCar.year} ${foundCar.make} ${foundCar.model}</th>
+                        <th align="center" style="width: 20%">${lead.note}</th>
+                        <th align="center" style="width: 20%">${lead.created_at.split('T')[0]}</th>
+                        <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
                     </tr>` 
                 }
             })
@@ -93,6 +93,14 @@ function start(login) {
         leaderBoardContainer.append(leaderStatCard)
         leaderStatCard.append(leaderBoard)
         personalStats.append(personalStatCard)
+
+        leadTable.addEventListener('click', function(e){
+            if (e.target.tagName === 'BUTTON'){
+                fetch(`http://localhost:3000/leads/${e.target.dataset.leadid}`, {
+                    method: 'DELETE'
+                }).then(e.target.parentNode.parentNode.remove())
+            }
+        })
         
 // overlay login page if user is not logged in *******************************************************************   
     } else if (login === false) {
@@ -211,6 +219,7 @@ let leadTable = document.createElement('table')
                         <th scope="col">Vehicle</th>
                         <th scope="col">Note</th>
                         <th scope="col">Last Updated</th>
+                        <th scope="col">   </th>
                     </tr>
                 </thead>`
 
@@ -327,7 +336,6 @@ function openClientTracker() {
             note: e.target[2].value,
             closed: false
         }
-        debugger
         let leadTable = document.getElementById('lead-table')
         let newClient = allClients.find(client => (client.id === parseInt(e.target[0].value)))
         let newVehicle = allVehicles.find(vehicle => (vehicle.id === parseInt(e.target[1].value)))
@@ -337,6 +345,7 @@ function openClientTracker() {
             <td>${newVehicle.year} ${newVehicle.make} ${newVehicle.model}</td>
             <td>${e.target[2].value}</td>
             <td>Just Now</td>
+            <td><button class="btn-danger" id="${e.target[0].value}">Remove</button></td>
         </tr>` 
 
         fetch('http://localhost:3000/leads', {
