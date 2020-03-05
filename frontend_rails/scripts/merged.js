@@ -26,7 +26,7 @@ function start(login) {
         personalStatCard.innerHTML = `
         <h5>${loggedInUser.name}</h5>
         <h6>${loggedInUser.position}</h6>
-        <p> $${loggedInUser.total_sales} / Quarterly Target: $250000 </p>`
+        <p id="total-sales-p"> $${loggedInUser.total_sales} / Quarterly Target: $250000 </p>`
         let progress = document.createElement('div')
         progress.className = 'progress'
         progress.innerHTML = `
@@ -690,6 +690,7 @@ function renderSellPage(e){
                 <div class="form-group">
                     <label for="sale_price">Sale Price:</label>
                     <input type="number" class="form-control" id="sale_price">
+                     <label for="sale_price">Client:</label>
                 </div>`
             sellInfoDiv.children[0].append(clientSelect)
             sellInfoDiv.children[0].innerHTML += `<button type="submit" class="btn btn-success">Sell</button>
@@ -757,7 +758,11 @@ function renderSellPage(e){
                                 'content-type': 'application/json'
                             },
                             body: JSON.stringify(dataUserSales)
-                        })
+                        }).then(b => {
+                            let theP = document.getElementById("total-sales-p")
+                            let add = parseInt(document.getElementById("total-sales-p").innerText.split("$")[1].split(" ")[0])
+                            let newAmount = add + parseInt(dataUserSales.sale_price_to_add)
+                            theP.innerText = `$${newAmount} / Quarterly Target: $250000`})
 
 
             })
