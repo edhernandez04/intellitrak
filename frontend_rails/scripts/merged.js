@@ -53,12 +53,12 @@ function start(login) {
             sortedUsers.forEach(user => {
                 if (user.id === loggedInUser.id){
                     leaderBoard.innerHTML +=
-                        `<tr style="background-color:cyan">
-                        <td align="center" style="width: 20%;"> ${user.name} </td>
-                        <td align="center" style="width: 20%;"> ${user.position} </td>
-                        <td align="center" style="width: 20%;"> ${user.cars_sold} </td>
-                        <td align="center" style="width: 20%;" id="total-sales-td"> $${user.total_sales} </td>
-                        <td align="center" style="width: 20%;"> ${user.team_name} </td>
+                        `<tr style="background-color:rgb(2, 118, 172);">
+                        <td align="center" style="width: 20%; color:white;"> ${user.name} </td>
+                        <td align="center" style="width: 20%; color:white;"> ${user.position} </td>
+                        <td align="center" style="width: 20%; color:white;"> ${user.cars_sold} </td>
+                        <td align="center" style="width: 20%; color:white;" id="total-sales-td"> $${user.total_sales} </td>
+                        <td align="center" style="width: 20%; color:white;"> ${user.team_name} </td>
                         </tr>`
                     } else {
                 leaderBoard.innerHTML +=
@@ -1182,7 +1182,7 @@ function renderLeaderBoard(){
                 let newRow = document.createElement("tr")
 
                 if (loggedInUser.id === user.id){
-                    newRow.style = "background-color: cyan"
+                    newRow.style = "background-color: rgb(2, 118, 172); color:white;"
                     newRow.innerHTML = `
                     <td>${count}</td>
                     <td>${user.name}</td>
@@ -1245,8 +1245,10 @@ function renderPerformance(){
     scrollingWrapper.className = "scrolling-wrapper-2"
     performanceCard.append(scrollingWrapper)
     
-    
-    displaySoldVehicles(allVehicles, scrollingWrapper)
+    fetch('http://localhost:3000/vehicles')
+    .then(response=> response.json())
+        .then(body => displaySoldVehicles(body, scrollingWrapper))
+
 
 
 
@@ -1282,3 +1284,20 @@ function displaySoldVehicles(vehicles, scrollingwrapper) {
 
 
 
+let menuList = document.getElementById("menu-list")
+
+menuList.addEventListener("click", function(e){
+
+    //check if it is user
+    console.log(e.target.tagName)
+    if (e.target.tagName === "P"){
+
+    } else {
+        let listItems = Array.from(menuList.children)
+        listItems.forEach(item => item.classList.remove("active"))
+
+        e.target.parentNode.classList.add("active")
+
+    }
+
+})
