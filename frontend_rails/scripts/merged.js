@@ -249,7 +249,7 @@ function openClientTracker() {
 
     let clientTrackerPanel = document.createElement('div')
         clientTrackerPanel.id = 'client-table'
-        clientTrackerPanel.className = 'row rendered-panel'
+        clientTrackerPanel.className = 'rendered-panel'
 
     let topRow = document.createElement('div')
         topRow.className = "row"
