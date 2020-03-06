@@ -36,6 +36,9 @@ function start(login) {
             .then(resp => resp.json()).then(leads => {
                 displayLeads(leads)})
 
+        ///add logged in user to sidebar
+        document.getElementById("logged-in-as").innerText = `${loggedInUser.name}`
+
         personalStatCard.innerHTML = `
         <h5>${loggedInUser.name}</h5>
         <h6>${loggedInUser.position}</h6>
@@ -482,8 +485,8 @@ function refreshDashboard() {
     if (document.getElementById("view-show-row")) {
         document.getElementById("view-show-row").remove()
     }
-    if (document.getElementById("edit-vehicle-form")) {
-        document.getElementById("edit-vehicle-form").remove()
+    if (document.getElementById("edit-vehicle-div")) {
+        document.getElementById("edit-vehicle-div").remove()
     }
     if (document.getElementById("sell-vehicle-form")) {
         document.getElementById("sell-vehicle-form").remove()
@@ -640,8 +643,8 @@ function hideAll() {
     if (addVehiclePanel) {
         addVehiclePanel.hidden = true
     }
-    if (document.getElementById("edit-vehicle-form")) {
-        document.getElementById("edit-vehicle-form").remove()
+    if (document.getElementById("edit-vehicle-div")) {
+        document.getElementById("edit-vehicle-div").remove()    
     }
     if (document.getElementById("sell-vehicle-form")) {
         document.getElementById("sell-vehicle-form").remove()
@@ -755,6 +758,7 @@ function renderEditPage(e){
         .then(response => response.json())
             .then(body => {
                 let editDiv = document.createElement("div")
+                editDiv.id = "edit-vehicle-div"
                 editDiv.innerHTML = `
                    
             
@@ -1220,10 +1224,22 @@ function renderPerformance(){
     
     <div class="row">
     <div class="col-md-3"><h2>${loggedInUser.name}</h2>
-    <h4>${loggedInUser.position}</h4></div>
-    <div class = "col-md-3"></div>
-    <div class="col-md-6"><h3>Total Sales: $${loggedInUser.total_sales}</h3></div>
+    <span class="badge badge-success">${loggedInUser.position}</span>
+    <h6>Progress to goal:</h6>
+    <div class="progress"><div class="progress-bar" role="progressbar" style="width: ${(loggedInUser.total_sales/250000)*100}%;" aria-valuenow="${(loggedInUser.total_sales/250000)*100}" aria-valuemin="0" aria-valuemax="100">${(loggedInUser.total_sales/250000)*100}%</div>
+    </div></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6"><h3>Total Sales: $${loggedInUser.total_sales}</h3>
+    <p id="total-commission"></p>
+     <p>All Time Vehicles Sold: ${loggedInUser.cars_sold}</p></div>
     </div>`
+
+    let yourSoldTitle = document.createElement("h2")
+    yourSoldTitle.innerText = "Your Sold Vehicles:"
+    yourSoldTitle.style = "margin-top: 40px; margin-left: 40px"
+    performanceCard.append(yourSoldTitle)
+
+
     contentContainer.append(performanceCard)
     let scrollingWrapper = document.createElement("div")
     scrollingWrapper.className = "scrolling-wrapper-2"
@@ -1241,6 +1257,7 @@ function renderPerformance(){
 
 function displaySoldVehicles(vehicles, scrollingwrapper) {
     sorted_vehicles = vehicles.sort((a, b) => (a.purchase_date > b.purchase_date) ? 1 : -1)
+    let total_commission = 0
     sorted_vehicles.forEach(car => {
         if (car.sold && loggedInUser.id === car.buyer_id) {
                 scrollingwrapper.innerHTML +=
@@ -1255,8 +1272,13 @@ function displaySoldVehicles(vehicles, scrollingwrapper) {
                                 Commision: $${Math.round((car.sale_price - (car.purchase_price * 1.2)) * .4)}
                                 </div>
                             </div>`
+                        total_commission = total_commission + Math.round((car.sale_price - (car.purchase_price * 1.2)) * .4)
         } else {
             
         }
+        document.getElementById("total-commission").innerText = `Total Commission: $${total_commission}`
     })
 }
+
+
+
