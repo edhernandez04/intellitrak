@@ -84,7 +84,7 @@ function start(login) {
                         <th align="center" style="width: 20%">${foundCar.year} ${foundCar.make} ${foundCar.model}</th>
                         <th align="center" style="width: 20%">${lead.note}</th>
                         <th align="center" style="width: 20%">${lead.created_at.split('T')[0]}</th>
-                        <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
+                        <td><button class="btn btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
                     </tr>` 
                 }
             })
@@ -248,18 +248,33 @@ function openClientTracker() {
     hideAll()
 
     let clientTrackerPanel = document.createElement('div')
-    clientTrackerPanel.id = 'client-table'
-    clientTrackerPanel.className = 'rendered-panel'
+        clientTrackerPanel.id = 'client-table'
+        clientTrackerPanel.className = 'row rendered-panel'
 
+    let topRow = document.createElement('div')
+        topRow.className = "row"
+    let titleContainer = document.createElement('div')
+        titleContainer.className = "col-10"
+    let buttonContainer = document.createElement('div')
+        buttonContainer.className = "col-2"
+    let addClientButton = document.createElement('button')
+        addClientButton.className = "btn btn-info"
+        addClientButton.id = "add-client-button"
+        addClientButton.innerText = "Add New Client"
     let title = document.createElement("h2")
-    title.innerHTML = `<i class="fa fa-address-card" style="margin-right: 13px" aria-hidden="true"></i></i>Client Tracker`
-    clientTrackerPanel.append(title)
+        title.innerHTML = `<i class="fa fa-address-card" style="margin-right: 13px" aria-hidden="true"></i></i>Client Tracker`
+            clientTrackerPanel.append(topRow)
+            topRow.append(titleContainer, buttonContainer)
+            titleContainer.append(title)
+            buttonContainer.append(addClientButton)
 
+    let bottomRow = document.createElement('div')
+        bottomRow.className = "row"
     let clientTracker = document.createElement('table')
-    clientTrackerPanel.append(clientTracker)
-
-    clientTracker.className = "table table-hover"
-    //clientTracker.id = 'client-table'
+        clientTracker.className = "table table-hover"
+        clientTracker.style = "width='100%'"
+            clientTrackerPanel.append(bottomRow)
+            bottomRow.append(clientTracker)
     
     clientTracker.innerHTML = `
                 <thead align="center">
@@ -272,8 +287,6 @@ function openClientTracker() {
                     </tr>
                 </thead>`
 
-                
-
     fetch('http://localhost:3000/clients')
     .then(resp => resp.json()).then(clients => displayClients(clients))
 
@@ -284,11 +297,73 @@ function openClientTracker() {
             <td>${client.phone_number}</td>
             <td>${client.email}</td>
             <td>${client.address}</td>
-            <td><button width="20%" id="add-client-${client.id}" class="btn-success"> Add Lead </button></td>
+            <td><button width="20%" id="add-client-${client.id}" class="btn btn-success"> Add Lead </button></td>
         </tr>`})
         }
     mainContainer.append(clientTrackerPanel)
 
+        //ADD NEW CLIENT FUNCTION ##//#endregion
+
+    let addButton = document.getElementById('add-client-button')
+    addButton.addEventListener('click', function(e){
+        
+            if (document.getElementById("add-client-panel")) {
+                document.getElementById("add-client-panel").remove()
+            }
+            hideAll()
+
+            let addClientPanel = document.createElement("div")
+            addClientPanel.id = "add-client-panel"
+            addClientPanel.innerHTML = `
+                    <h2> <i class="fa fa-user" style="margin-right: 10px; margin-top: 20px"></i>Add New Client </h2>
+                    
+                    <form style="" id="add-client-form">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="form-group">
+                                <label for="fullname">Enter Full Name:</label>
+                                <input type="text" class="form-control" id="fullname">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Phone Number:</label>
+                                <input type="text" class="form-control" id="phone_number">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <input type="text" class="form-control" id="trim">
+                            </div>
+                            <button type="submit" class="btn btn-info">Add Client</button>   
+                    </div> 
+                    </form>`
+
+            contentContainer.append(addClientPanel)
+
+            let addClientForm = document.getElementById("add-client-form")
+            addClientForm.addEventListener("submit", function (e) {
+                e.preventDefault()
+
+                let data = {
+                    fullname: e.target[0].value,
+                    phone_number: e.target[1].value,
+                    email: e.target[2].value,
+                    address: e.target[3].value,
+                }
+
+                fetch("http://localhost:3000/clients", {
+                        method: "POST",
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }).then(hideAll).then(refreshDashboard)
+            })
+})
+    
+        // ADD LEAD FUNCTION ###
     clientTracker.addEventListener("click", function(e){
         if(e.target.tagName != "BUTTON"){
             return null
@@ -354,7 +429,7 @@ function openClientTracker() {
             <td>${newVehicle.year} ${newVehicle.make} ${newVehicle.model}</td>
             <td>${e.target[2].value}</td>
             <td>Just Now</td>
-            <td><button class="btn-danger" id="${e.target[0].value}">Remove</button></td>
+            <td><button class="btn btn-danger" id="${e.target[0].value}">Remove</button></td>
         </tr>` 
 
         fetch('http://localhost:3000/leads', {
@@ -502,6 +577,9 @@ function refreshDashboard() {
     }
     if(document.getElementById("performance-panel")){
         document.getElementById("performance-panel").remove()
+    }
+    if(document.getElementById("add-client-panel")){
+        document.getElementById("add-client-panel").remove()
     }
 
     unhideDashboard()
@@ -670,6 +748,9 @@ function hideAll() {
     }
     if (document.getElementById("performance-panel")) {
         document.getElementById("performance-panel").remove()
+    }
+    if (document.getElementById("add-client-panel")){
+        document.getElementById("add-client-panel").remove()
     }
 }
 
@@ -1053,7 +1134,7 @@ function renderCarNotes(e) {
                     <td style="width: 20%">${userOwner.name}</td>
                     <td style="width: 20%">${lead.note}</td>
                     <td style="width: 20%">${lead.created_at.split('T')[0]}</td>
-                    <td><button class="btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
+                    <td><button class="btn btn-danger" data-leadid="${lead.id}"id="${lead.client_id}"> Remove </button></td>
                 </tr>
                     `
             }
